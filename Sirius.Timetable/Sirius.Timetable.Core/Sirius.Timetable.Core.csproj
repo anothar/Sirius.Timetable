@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Timetable\TimetableParser.cs" />
     <Compile Include="Timetable\Utilites\Activity.cs" />
     <Compile Include="Timetable\Timetable.cs" />
     <Compile Include="WebServises\TimetableDownloader.cs" />

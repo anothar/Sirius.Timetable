@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirius.Timetable", "Sirius.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirius.Timetable.Core", "Sirius.Timetable\Sirius.Timetable.Core\Sirius.Timetable.Core.csproj", "{BE52EB50-B0DA-4689-8964-AF0D7C5DEE46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirius.Timetable.Core.Test", "Sirius.Timetable.Core.Test\Sirius.Timetable.Core.Test.csproj", "{D30CB658-6432-4E06-BB56-E097563D83AD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,18 +73,6 @@ Global
 		{BE52EB50-B0DA-4689-8964-AF0D7C5DEE46}.Release|iPhone.Build.0 = Release|Any CPU
 		{BE52EB50-B0DA-4689-8964-AF0D7C5DEE46}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{BE52EB50-B0DA-4689-8964-AF0D7C5DEE46}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Release|iPhone.Build.0 = Release|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{D30CB658-6432-4E06-BB56-E097563D83AD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
