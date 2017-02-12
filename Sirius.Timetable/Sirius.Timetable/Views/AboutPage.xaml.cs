@@ -8,6 +8,7 @@ namespace Sirius.Timetable.Views
 		public AboutPage()
 		{
 			InitializeComponent();
+			
 		}
 	}
 }

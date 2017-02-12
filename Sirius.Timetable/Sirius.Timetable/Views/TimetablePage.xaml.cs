@@ -8,11 +8,16 @@ using Xamarin.Forms;
 
 namespace Sirius.Timetable.Views
 {
-	public partial class Master
+	public partial class TimetablePage
 	{
-		public Master()
+		public TimetablePage()
 		{
 			InitializeComponent();
+
+			Master = new ItemsPage();
+			Detail = new NavigationPage(new Views.AboutPage());
+
+			this.ShouldShowToolbarButton();
 		}
 	}
 }
