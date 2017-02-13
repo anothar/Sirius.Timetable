@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sirius.Timetable.Views.MenuPage"
+             xmlns:vm="clr-namespace:Sirius.Timetable.ViewModels;assembly=Sirius.Timetable"
+             Title="Menu">
+    <ContentPage.BindingContext>
+        <vm:MenuViewModel></vm:MenuViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Image Source="logo.png" BackgroundColor="{StaticResource Accent}" HeightRequest="150"/>
+        <ListView VerticalOptions="FillAndExpand"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding Items}"
+                  CachingStrategy="RecycleElement"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Text}"
+                                   Style="{DynamicResource ListItemTextStyle}"
+                                   FontSize="16"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Start"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

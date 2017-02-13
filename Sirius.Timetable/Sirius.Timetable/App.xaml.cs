@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Sirius.Timetable
 {
-	public partial class App : Application
+	public partial class App
 	{
         public App()
 		{
@@ -16,20 +16,7 @@ namespace Sirius.Timetable
 
 		public static void SetMainPage()
 		{
-			Current.MainPage = new TimetablePage();
-			//Children =
-			//{
-			//    new NavigationPage(new ItemsPage())
-			//    {
-			//        Title = "Browse",
-			//        Icon = Device.OnPlatform<string>("tab_feed.png",null,null)
-			//    },
-			//    new NavigationPage(new AboutPage())
-			//    {
-			//        Title = "About",
-			//        Icon = Device.OnPlatform<string>("tab_about.png",null,null)
-			//    },
-			//}
+			Current.MainPage = new NavigationPage(new TimetablePage());
 		}
 	}
 }

@@ -1,7 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sirius.Timetable.Views.TimetablePage"
-                  xmlns:local="clr-namespace:Sirius.Timetable.Views;assembly=Sirius.Timetable"
-             Title="Timetable">
-</MasterDetailPage>
+             xmlns:local="clr-namespace:Sirius.Timetable.Views;assembly=Sirius.Timetable"
+             Title="Расписание">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Выбрать расписание" Command="{Binding SelectTeamCommand}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ListView HasUnevenRows="True"
+              IsPullToRefreshEnabled="True"
+              ItemsSource="{Binding Timetable}"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              VerticalOptions="FillAndExpand"
+              RefreshCommand="{Binding RefreshCommand}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame>
+                        <StackLayout Orientation="Horizontal" Padding="10, 5, 10, 5" VerticalOptions="Center" >
+                            <StackLayout Orientation="Horizontal" MinimumWidthRequest="150" VerticalOptions="Center" Padding="0, 0, 10, 0">
+                                <Label Text="{Binding Start}" FontSize="18"/>
+                                <Label Text="-" FontSize="18"/>
+                                <Label Text="{Binding End}" FontSize="18"></Label>
+                            </StackLayout>
+                            <Label Text="{Binding Title}" FontSize="18"></Label>
+                        </StackLayout>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

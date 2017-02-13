@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Sirius.Timetable.ViewModels;
 using Xamarin.Forms;
 
 namespace Sirius.Timetable.Views
@@ -13,11 +13,10 @@ namespace Sirius.Timetable.Views
 		public TimetablePage()
 		{
 			InitializeComponent();
-
-			Master = new ItemsPage();
-			Detail = new NavigationPage(new Views.AboutPage());
-
-			this.ShouldShowToolbarButton();
+			_viewModel = new TimetableViewModel(null, null);
+			BindingContext = _viewModel;
 		}
+
+		private TimetableViewModel _viewModel;
 	}
 }
