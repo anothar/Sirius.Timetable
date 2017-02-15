@@ -17,7 +17,7 @@
               >
         <ListView.ItemTemplate>
             <DataTemplate>
-                <local:AdvancedCell>
+                <ViewCell>
                     <StackLayout BackgroundColor="{Binding Color}">
                         <StackLayout Orientation="Horizontal" Padding="10, 5, 10, 5" VerticalOptions="Center">
                             <StackLayout Orientation="Horizontal" MinimumWidthRequest="150" VerticalOptions="Center" Padding="0, 0, 10, 0">
@@ -27,7 +27,7 @@
                             </StackLayout>
                             <Label Text="{Binding Title}" FontSize="18"></Label>
                         </StackLayout>
-                        <StackLayout Padding="3" Orientation="Horizontal" IsVisible="False">
+                        <StackLayout Padding="3" Orientation="Horizontal" IsVisible="{Binding IsSelected}">
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="BusTo:"></Label>
@@ -42,7 +42,7 @@
                             <Label Text="{Binding Place}"></Label>
                         </StackLayout>
                     </StackLayout>
-                </local:AdvancedCell>
+                </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
