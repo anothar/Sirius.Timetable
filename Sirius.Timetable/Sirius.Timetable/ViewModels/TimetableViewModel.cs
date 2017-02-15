@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Sirius.Timetable.Helpers;
@@ -38,16 +39,23 @@ namespace Sirius.Timetable.ViewModels
 				await Application.Current.MainPage.DisplayActionSheet("Выберите команду", "Отмена", null, liters.ToArray());
 			Debug.WriteLine(liter);
 			if (String.IsNullOrEmpty(liter) || liter == "Отмена")
+			{
+				IsBusy = false;
 				return;
+			}
 			var numbers = TimetableService.TeamsLiterPossibleNumbers[liter];
 			var number = await Application.Current.MainPage.DisplayActionSheet("Выберите команду", "Отмена", null, numbers.ToArray());
 			Debug.WriteLine(number);
 			if (String.IsNullOrEmpty(number) || number == "Отмена")
+			{
+				IsBusy = false;
 				return;
+			}
 
 			_team = liter + number;
-			_date = DateTime.Parse("06/02/2017");
+			_date = DateTime.ParseExact("06.02.2017", "dd.MM.yyyy", null);
 			await RefreshTimetable(false);
+			OnPropertyChanged(nameof(Team));
 		}
 
 		private static async void RefreshOnlyTimetable()
@@ -56,17 +64,16 @@ namespace Sirius.Timetable.ViewModels
 		}
 		private async Task RefreshTimetable(bool hard)
 		{
-			if(IsBusy) return;
 			if (String.IsNullOrEmpty(_team))
 			{
 				SelectTeamCommand.Execute(null);
+				IsBusy = false;
 				return;
 			}
-			IsBusy = true;
 			if (hard)
 				await TimetableService.RefreshTimetables();
 
-			var dateKey = _date.ToString("d").Replace(".", "");
+			var dateKey = _date.ToString("dd.MM.yyyy").Replace(".", "");
 			var timetable = TimetableService.Timetables[dateKey];
 			var currentTimetable = timetable.Teams[TimetableService.KeywordDictionary[_team]];
 			var collection = currentTimetable.Select(activity => new TimetableItem(activity));
@@ -91,7 +98,7 @@ namespace Sirius.Timetable.ViewModels
 			get { return _timetable; }
 			set { SetProperty(ref _timetable, value); }
 		}
-
+		public string Team => TimetableService.KeywordDictionary[_team];
 		private ObservableCollection<TimetableItem> _timetable;
 		private string _teamName;
 		private bool _isBusy;

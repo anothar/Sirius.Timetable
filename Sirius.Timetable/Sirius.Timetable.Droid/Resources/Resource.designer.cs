@@ -2222,6 +2222,9 @@ namespace Sirius.Timetable.Droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f07009a
+			public const int ViewCellBack = 2131165338;
+			
 			// aapt resource value: 0x7f07008b
 			public const int action0 = 2131165323;
 			
@@ -2929,6 +2932,9 @@ namespace Sirius.Timetable.Droid
 			
 			// aapt resource value: 0x7f030038
 			public const int Toolbar = 2130903096;
+			
+			// aapt resource value: 0x7f030039
+			public const int ViewCell = 2130903097;
 			
 			static Layout()
 			{
