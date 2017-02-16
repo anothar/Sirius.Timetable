@@ -36,18 +36,10 @@ namespace Sirius.Timetable.ViewModels
         private async Task SelectTeamExecute()
 		{
             var selectPage = new TeamSelectPage();
-
-            var liter = await selectPage.SelectTesmAsync();
-            Debug.WriteLine(liter);
-            if (String.IsNullOrEmpty(liter) || liter == "Отмена")
-                return;
-            var numbers = TimetableService.TeamsLiterPossibleNumbers[liter];
-            var number = await Application.Current.MainPage.DisplayActionSheet("Выберите команду", "Отмена", null, numbers.ToArray());
-            Debug.WriteLine(number);
-            if (String.IsNullOrEmpty(number) || number == "Отмена")
-                return;
-
-			_team = liter + number;
+		    var selectedGroup = await selectPage.SelectTeamAsync();
+		    if (string.IsNullOrEmpty(selectedGroup))
+		        return;
+            _team = selectedGroup;
 			_date = DateTime.ParseExact("06.02.2017", "dd.MM.yyyy", null);
 			await RefreshTimetable(false);
 			OnPropertyChanged(nameof(Team));

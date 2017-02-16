@@ -5,8 +5,8 @@
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              x:Class="Sirius.Timetable.Views.TeamSelectPage"
              >
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White">
-        <StackLayout Orientation="Horizontal">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" WidthRequest="420">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
             <StackLayout>
                 <Image 
                 HeightRequest="60" 
@@ -60,6 +60,17 @@
     </Image>
             </StackLayout>
         </StackLayout>
+        <Label x:Name="DirectionName" IsVisible="False" HorizontalOptions="CenterAndExpand">
+            <Label.Resources>
+                <ResourceDictionary>
+                    <x:String x:Key="И">Искусство</x:String>
+                    <x:String x:Key="Н">Наука</x:String>
+                    <x:String x:Key="Л">Литература</x:String>
+                    <x:String x:Key="С">Спорт</x:String>
+                </ResourceDictionary>
+            </Label.Resources>
+        </Label>
+        <StackLayout x:Name="Groups" Orientation="Horizontal" IsVisible="False" HorizontalOptions="CenterAndExpand"></StackLayout>
         <Button 
         Text="Отмена" 
         Clicked="OnCancel" 
