@@ -12,6 +12,7 @@ namespace Sirius.Timetable
 			InitializeComponent();
 
 			SetMainPage();
+            
 		}
 
 		public static void SetMainPage()

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="Sirius.Timetable.Views.TeamSelectPage"
+             >
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White">
+        <StackLayout Orientation="Horizontal">
+            <StackLayout>
+                <Image 
+                HeightRequest="60" 
+                Source="science.png" 
+                x:Name="science"
+                Margin="10">
+                <Image.Resources>
+                    <ResourceDictionary>
+                        <x:String x:Key="tag">Н</x:String>
+                    </ResourceDictionary>
+                </Image.Resources>
+            </Image>
+            </StackLayout>
+            <StackLayout>
+                <Image 
+                HeightRequest="60" 
+                Source="sport.png" 
+                x:Name="sport"
+                Margin="10">
+                <Image.Resources>
+                    <ResourceDictionary>
+                        <x:String x:Key="tag">С</x:String>
+                    </ResourceDictionary>
+                </Image.Resources>
+            </Image>
+            </StackLayout>
+            <StackLayout>
+                <Image 
+                HeightRequest="60" 
+                Source="art.png" 
+                x:Name="art"
+                Margin="10">
+                <Image.Resources>
+                    <ResourceDictionary>
+                        <x:String x:Key="tag">И</x:String>
+                    </ResourceDictionary>
+                </Image.Resources>
+        </Image>
+            </StackLayout>
+            <StackLayout>
+                <Image 
+                HeightRequest="60" 
+                Source="literature.png" 
+                x:Name="literature"
+                Margin="10">
+                <Image.Resources>
+                    <ResourceDictionary>
+                        <x:String x:Key="tag">Л</x:String>
+                    </ResourceDictionary>
+                </Image.Resources>
+    </Image>
+            </StackLayout>
+        </StackLayout>
+        <Button 
+        Text="Отмена" 
+        Clicked="OnCancel" 
+        HorizontalOptions="FillAndExpand" 
+        BackgroundColor="White" 
+        BorderWidth="0"/>
+    </StackLayout>
+</pages:PopupPage>

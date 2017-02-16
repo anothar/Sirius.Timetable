@@ -1,6 +1,7 @@
 ﻿using System;
 using Sirius.Timetable.Models;
 using Sirius.Timetable.ViewModels;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
 namespace Sirius.Timetable.Views
