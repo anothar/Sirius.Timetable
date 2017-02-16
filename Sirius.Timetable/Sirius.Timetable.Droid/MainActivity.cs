@@ -4,7 +4,12 @@ using Android.OS;
 
 namespace Sirius.Timetable.Droid
 {
-	[Activity(Label = "Sirius.Timetable.Droid", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(
+        Label = "Sirius.Timetable", 
+        Theme = "@style/MyTheme", 
+        MainLauncher = true, 
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)
+        ]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle bundle)
