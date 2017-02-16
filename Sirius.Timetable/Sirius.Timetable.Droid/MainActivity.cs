@@ -9,6 +9,7 @@ namespace Sirius.Timetable.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+			
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
@@ -17,6 +18,11 @@ namespace Sirius.Timetable.Droid
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
 			LoadApplication(new App());
+		}
+
+		public override void OnBackPressed()
+		{
+			base.MoveTaskToBack(true);
 		}
 	}
 }

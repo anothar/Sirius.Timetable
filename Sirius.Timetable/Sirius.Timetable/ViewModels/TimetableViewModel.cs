@@ -18,7 +18,7 @@ namespace Sirius.Timetable.ViewModels
 
 			SelectTeamCommand = new Command(async () => await SelectTeamExecute());
 			RefreshCommand = new Command(async () => await RefreshTimetable(true));
-
+			Header = new TimetableHeader();
 			if (!date.HasValue || String.IsNullOrEmpty(team))
 			{
 				RefreshOnlyTimetable();
@@ -55,9 +55,19 @@ namespace Sirius.Timetable.ViewModels
 			_team = liter + number;
 			_date = DateTime.ParseExact("06.02.2017", "dd.MM.yyyy", null);
 			await RefreshTimetable(false);
+			Header.Team = Team;
+			Header.Date = _date.ToString("D");
+			Header.IsLoaded = true;
 			OnPropertyChanged(nameof(Team));
 		}
 
+		public TimetableHeader Header
+		{
+			get { return _header; }
+			set { SetProperty(ref _header, value); }
+		}
+
+		private TimetableHeader _header;
 		private static async void RefreshOnlyTimetable()
 		{
 			await TimetableService.RefreshTimetables();
