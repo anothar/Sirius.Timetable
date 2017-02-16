@@ -7,14 +7,17 @@ using Rg.Plugins.Popup.Extensions;
 using Sirius.Timetable.Services;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Pages;
-using Sirius.Timetable.ViewModels;
 
 namespace Sirius.Timetable.Views
 {
     public partial class TeamSelectPage : PopupPage
     {
         private readonly TaskCompletionSource<string> _completion = new TaskCompletionSource<string>();
+        private bool IsSelected { get; set; }
         public Task<string> CompletionTask => _completion.Task;
+        public string SelectedItem { get; private set; }
+        public string SelectedNumber { get; private set; }
+        public string SelectedGroup { get; private set; }
 
         public TeamSelectPage()
         {
@@ -34,62 +37,85 @@ namespace Sirius.Timetable.Views
             return await CompletionTask;
         }
 
-        private async void OnCancel(object sender, EventArgs e)
-        {
-            await Application.Current.MainPage.Navigation.PopPopupAsync();
-            _completion.TrySetResult(null);
-        }
-
         private void OnChooseDirection(object sender, EventArgs e)
         {
-            var arr = new List<Image> { science, sport, literature, art };
+            ButtonOk.Opacity = 0.25;
+            GroupName.IsVisible = false;
+            if (Groups.Children.Any())
+            {
+                SelectGroupByOpacity(Groups.Children[0], 0.25, 0.25);
+            }
             if (SelectedItem == ((Image) sender).Resources["tag"].ToString() && Groups.IsVisible)
             {
-                foreach (var item in arr)
-                {
-                    item.Opacity = 1;
-                }
-                Groups.IsVisible = false;
-                DirectionName.IsVisible = false;
+                TitleText.Text = TitleText.Resources["1"].ToString();
+                SelectDirectionByOpacity((Image)sender, 0.25, 0.25);
+                ChangeVisible(false);
                 return;
             }
             if (SelectedItem == ((Image) sender).Resources["tag"].ToString())
             {
-                foreach (var item in arr)
-                {
-                    item.Opacity = 0.25;
-                }
-                ((Image)sender).Opacity = 1;
-                DirectionName.IsVisible = true;
-                Groups.IsVisible = true;
+                TitleText.Text = TitleText.Resources["2"].ToString();
+                SelectDirectionByOpacity((Image) sender, 1, 0.25);
+                ChangeVisible(true);
                 return;
             }
-            foreach (var item in arr)
-            {
-                item.Opacity = 0.25;
-            }
-            ((Image)sender).Opacity = 1;
 
+            TitleText.Text = TitleText.Resources["2"].ToString();
+            SelectDirectionByOpacity((Image)sender, 1, 0.25);
             SelectedItem = ((Image)sender).Resources["tag"].ToString();
+            ChangeVisible(false);
             DirectionName.Text = (string)DirectionName.Resources[SelectedItem];
+
+
             var numbers = TimetableService.TeamsLiterPossibleNumbers[SelectedItem].Select(GetGroupSelector);
-            Groups.IsVisible = false;
-            DirectionName.IsVisible = false;
+            
             Groups.Children.Clear();
             foreach (var item in numbers) {
                 Groups.Children.Add(item);
             }
-            DirectionName.IsVisible = true;
-            Groups.IsVisible = true;
+
+            ChangeVisible(true);
         }
 
-        private async void OnChooseGroup(object sender, EventArgs e)
+        private void OnChooseGroup(object sender, EventArgs e)
         {
-            var button = (Label) sender;
-            SelectedNumber = button.Text;
+            if (SelectedGroup == ((Label) sender).Text && IsSelected)
+            {
+                return;
+            }
+            
+            SelectGroupByOpacity((Label)sender, 1, 0.25);
+            SelectedNumber = ((Label)sender).Text;
             SelectedGroup = SelectedItem + SelectedNumber;
-            await Navigation.PopPopupAsync();
-            _completion.TrySetResult(SelectedGroup);
+            IsSelected = true;
+            ButtonOk.Opacity = 1;
+            GroupName.Text = TimetableService.KeywordDictionary[SelectedGroup];
+            GroupName.IsVisible = true;
+        }
+
+        private void SelectDirectionByOpacity(Image toSelect, double opacitySelected, double opacityUnselected)
+        {
+            var arr = new List<Image> { science, sport, literature, art };
+            foreach (var item in arr)
+            {
+                item.Opacity = opacityUnselected;
+            }
+            toSelect.Opacity = opacitySelected;
+        }
+
+        private void SelectGroupByOpacity(View toSelect, double opacitySelected, double opacityUnselected)
+        {
+            foreach (var item in Groups.Children)
+            {
+                item.Opacity = opacityUnselected;
+            }
+            toSelect.Opacity = opacitySelected;
+        }
+
+        private void ChangeVisible(bool x)
+        {
+            DirectionName.IsVisible = x;
+            Groups.IsVisible = x;
         }
 
         private Label GetGroupSelector(string text)
@@ -103,14 +129,19 @@ namespace Sirius.Timetable.Views
                 TextColor = Color.Black,
                 FontSize = 20,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                Margin = new Thickness(2)
+                Margin = new Thickness(2),
+                Opacity = 0.25
             };
             button.GestureRecognizers.Add(tapGroup);
             return button;
         }
 
-        public string SelectedItem { get; private set; }
-        public string SelectedNumber { get; private set; }
-        public string SelectedGroup { get; private set; }
+        private async void OnChoose(object sender, EventArgs e)
+        {
+            if (!IsSelected)
+                return;
+            await Application.Current.MainPage.Navigation.PopPopupAsync();
+            _completion.TrySetResult(SelectedGroup);
+        }
     }
 }
