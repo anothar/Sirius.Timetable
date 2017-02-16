@@ -1,5 +1,4 @@
-﻿using System;
-using Sirius.Timetable.Models;
+﻿using Sirius.Timetable.Models;
 using Sirius.Timetable.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
@@ -14,16 +13,10 @@ namespace Sirius.Timetable.Views
 			BindingContext = _viewModel = new TimetableViewModel(null, null);
 		}
 		
-		private void ListViewOnActivitySelected(object sender, SelectedItemChangedEventArgs e)
+		private void ListViewOnActivitySelected(object sender, ItemTappedEventArgs e)
 		{
-			foreach (var timetableItem in _viewModel.Timetable)
-			{
-				timetableItem.IsSelected = false;
-				timetableItem.Color = Color.Transparent;
-			}
-			var item = (TimetableItem)e.SelectedItem;
-			item.IsSelected = true;
-			item.Color = (Color)Application.Current.Resources["Accent"];
+			var item = (TimetableItem)e.Item;
+			item.IsSelected = !item.IsSelected;
 		}
 
 		private readonly TimetableViewModel _viewModel;

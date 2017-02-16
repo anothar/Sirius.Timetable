@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization.Json;
+﻿using System;
+using System.Runtime.Serialization.Json;
 using Sirius.Timetable.Core;
 using Sirius.Timetable.Helpers;
 using Xamarin.Forms;
@@ -15,8 +16,15 @@ namespace Sirius.Timetable.Models
 			if (activity.BusFrom != null) BusFrom = activity.BusFrom.Value.ToString("t");
 			Title = activity.Title;
 			Place = activity.Place;
+			IsBus = !String.IsNullOrEmpty(BusTo);
+			IsPlace = !String.IsNullOrEmpty(Place);
 		}
 
+		public LineBreakMode Wrap
+		{
+			get { return _warp; }
+			set { SetProperty(ref _warp, value); }
+		}
 		public Color Color
 		{
 			get { return _color; } 
@@ -25,15 +33,55 @@ namespace Sirius.Timetable.Models
 		public bool IsSelected
 		{
 			get { return _isSelected; }
-			set { SetProperty(ref _isSelected, value); }
+			set
+			{
+				SetProperty(ref _isSelected, value);
+				OnPropertyChanged(nameof(IsPlace));
+				OnPropertyChanged(nameof(IsBus));
+			}
 		}
-		public string Start { get; set; }
+
+		public string Start
+		{
+			get { return _start; }
+			set { SetProperty(ref _start, value); }
+		}
+
 		public string End { get; set; }
-		public string BusTo { get; set; }
-		public string BusFrom { get; set; }
+		public string BusTo
+		{
+			get { return String.IsNullOrEmpty(_busTo) ? "" : $"Автобус туда: {_busTo}"; }
+			set { _busTo = value; }
+		}
+		public string BusFrom
+		{
+			get { return String.IsNullOrEmpty(_busFrom) ? "" : $"Автобус обратно: {_busFrom}"; }
+			set { _busFrom = value; }
+		}
 		public string Title { get; set; }
-		public string Place { get; set; }
+		public string Place
+		{
+			get { return String.IsNullOrEmpty(_place)? "" : $"Место: {_place}"; }
+			set { _place = value; }
+		}
+		public bool IsBus
+		{
+			get { return _isBus && _isSelected;}
+			set { SetProperty(ref _isBus, value); }
+		}
+		public bool IsPlace
+		{
+			get { return _isPlace && _isSelected; }
+			set { SetProperty(ref _isPlace, value); }
+		}
+		private bool _isBus; 
 		private bool _isSelected;
 		private Color _color;
+		private LineBreakMode _warp = LineBreakMode.TailTruncation;
+		private string _place;
+		private string _busTo;
+		private string _busFrom;
+		private bool _isPlace;
+		private string _start;
 	}
 }
