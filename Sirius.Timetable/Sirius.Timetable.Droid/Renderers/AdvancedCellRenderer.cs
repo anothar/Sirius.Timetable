@@ -52,9 +52,13 @@ namespace Sirius.Timetable.Droid.Renderers
 				_cell.StartTextView.TextSize = _cell.EndTextView.TextSize = _cell.DashTextView.TextSize = _cell.TitleTextView.TextSize = advancedCell.MainTextSize;
 			else if (e.PropertyName == AdvancedCell.DetailTextSizeProperty.PropertyName)
 				_cell.BusToTextView.TextSize =
-					_cell.BusFromTextView.TextSize = _cell.PlaceTextView.TextSize = advancedCell.DetailTextSize;
+					_cell.BusFromTextView.TextSize =
+						_cell.PlaceTextView.TextSize = _cell.BusHelper1.TextSize = _cell.BusHelper2.TextSize = advancedCell.DetailTextSize;
 			else if (e.PropertyName == AdvancedCell.IsSelectedProperty.PropertyName)
+			{
 				_cell.Details.Visibility = advancedCell.IsSelected ? ViewStates.Visible : ViewStates.Gone;
+				_cell.TitleTextView.SetMaxLines(advancedCell.IsSelected ? 100 : 1);
+			}
 			else if (e.PropertyName == AdvancedCell.IsBusProperty.PropertyName)
 				_cell.Bus.Visibility = advancedCell.IsBus ? ViewStates.Visible : ViewStates.Gone;
 			else if (e.PropertyName == AdvancedCell.IsPlaceProperty.PropertyName)

@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Extensions;
 using Sirius.Timetable.Services;
 using Xamarin.Forms;
-using Rg.Plugins.Popup.Pages;
 
 namespace Sirius.Timetable.Views
 {
-    public partial class TeamSelectPage : PopupPage
+    public partial class TeamSelectPage
     {
         private readonly TaskCompletionSource<string> _completion = new TaskCompletionSource<string>();
         private bool IsSelected { get; set; }
@@ -23,7 +21,7 @@ namespace Sirius.Timetable.Views
         {
             InitializeComponent();
             var tapImg = new TapGestureRecognizer();
-
+			
             tapImg.Tapped += OnChooseDirection;
             science.GestureRecognizers.Add(tapImg);
             sport.GestureRecognizers.Add(tapImg);
@@ -39,13 +37,13 @@ namespace Sirius.Timetable.Views
 
         private void OnChooseDirection(object sender, EventArgs e)
         {
-            ButtonOk.Opacity = 0.25;
-            GroupName.IsVisible = false;
+            ButtonOk.FadeTo(0.25);
+            GroupName.FadeTo(0);
             if (Groups.Children.Any())
             {
                 SelectGroupByOpacity(Groups.Children[0], 0.25, 0.25);
             }
-            if (SelectedItem == ((Image) sender).Resources["tag"].ToString() && Groups.IsVisible)
+            if (SelectedItem == ((Image) sender).Resources["tag"].ToString() && Groups.Opacity == 1)
             {
                 TitleText.Text = TitleText.Resources["1"].ToString();
                 SelectDirectionByOpacity((Image)sender, 0.25, 0.25);
@@ -88,41 +86,45 @@ namespace Sirius.Timetable.Views
             SelectedNumber = ((Label)sender).Text;
             SelectedGroup = SelectedItem + SelectedNumber;
             IsSelected = true;
-            ButtonOk.Opacity = 1;
+            ButtonOk.FadeTo(1);
             GroupName.Text = TimetableService.KeywordDictionary[SelectedGroup];
-            GroupName.IsVisible = true;
+            GroupName.FadeTo(1);
         }
 
         private void SelectDirectionByOpacity(Image toSelect, double opacitySelected, double opacityUnselected)
         {
             var arr = new List<Image> { science, sport, literature, art };
-            foreach (var item in arr)
-            {
-                item.Opacity = opacityUnselected;
-            }
-            toSelect.Opacity = opacitySelected;
+	        Task.WhenAll(
+		        arr.Select(item => item.FadeTo(item != toSelect ? opacityUnselected : opacitySelected)));
         }
 
-        private void SelectGroupByOpacity(View toSelect, double opacitySelected, double opacityUnselected)
+        private void SelectGroupByOpacity(IElementController toSelect, double opacitySelected, double opacityUnselected)
         {
-            foreach (var item in Groups.Children)
-            {
-                item.Opacity = opacityUnselected;
-            }
-            toSelect.Opacity = opacitySelected;
+	        Task.WhenAll(
+		        Groups.Children.Select(item => item.FadeTo(item != toSelect ? opacityUnselected : opacitySelected)));
         }
 
         private void ChangeVisible(bool x)
         {
-            DirectionName.IsVisible = x;
-            Groups.IsVisible = x;
-        }
+	        if (x)
+	        {
+				Task.WhenAll(
+					DirectionName.FadeTo(1),
+					Groups.FadeTo(1));
+	        }
+	        else
+	        {
+				Task.WhenAll(
+			        DirectionName.FadeTo(0),
+			        Groups.FadeTo(0));
+	        }
+		}
 
         private Label GetGroupSelector(string text)
         {
             var tapGroup = new TapGestureRecognizer();
             tapGroup.Tapped += OnChooseGroup;
-            var button = new Label()
+            var button = new Label
             {
                 Text = text,
                 BackgroundColor = Color.Transparent,

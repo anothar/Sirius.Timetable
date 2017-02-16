@@ -16,6 +16,8 @@ namespace Sirius.Timetable.Droid.Controls
 		public TextView EndTextView { get; set; }
 		public TextView TitleTextView { get; set; }
 		public TextView BusToTextView { get; set; }
+		public TextView BusHelper1 { get; set; }
+		public TextView BusHelper2 { get; set; }
 		public TextView BusFromTextView { get; set; }
 		public TextView PlaceTextView { get; set; }
 		public LinearLayout Details { get; set; }
@@ -36,6 +38,8 @@ namespace Sirius.Timetable.Droid.Controls
 			PlaceTextView = view.FindViewById<TextView>(Resource.Id.TextPlace);
 			Details = view.FindViewById<LinearLayout>(Resource.Id.DetailLine);
 			Bus = view.FindViewById<LinearLayout>(Resource.Id.Bus);
+			BusHelper1 = view.FindViewById<TextView>(Resource.Id.DetailHelp1);
+			BusHelper2 = view.FindViewById<TextView>(Resource.Id.DetailHelp2);
 
 			AddView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
 		}
@@ -54,7 +58,7 @@ namespace Sirius.Timetable.Droid.Controls
 			Bus.Visibility = cell.IsBus ? ViewStates.Visible : ViewStates.Gone;
 
 			StartTextView.TextSize = EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.MainTextSize;
-			BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = cell.DetailTextSize;
+			BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = BusHelper1.TextSize = BusHelper2.TextSize = cell.DetailTextSize;
 		}
 	}
 }

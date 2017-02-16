@@ -50,12 +50,12 @@ namespace Sirius.Timetable.Models
 		public string End { get; set; }
 		public string BusTo
 		{
-			get { return String.IsNullOrEmpty(_busTo) ? "" : $"Автобус туда: {_busTo}"; }
+			get { return String.IsNullOrEmpty(_busTo) ? "" : _busTo; }
 			set { _busTo = value; }
 		}
 		public string BusFrom
 		{
-			get { return String.IsNullOrEmpty(_busFrom) ? "" : $"Автобус обратно: {_busFrom}"; }
+			get { return String.IsNullOrEmpty(_busFrom) ? "" : _busFrom; }
 			set { _busFrom = value; }
 		}
 		public string Title { get; set; }

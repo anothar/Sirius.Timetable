@@ -80,8 +80,8 @@
                 </StackLayout>
             </StackLayout>
             <Label 
-                x:Name="DirectionName" 
-                IsVisible="False" 
+              x:Name="DirectionName" 
+                Opacity="0" 
                 HorizontalOptions="CenterAndExpand" 
                 HorizontalTextAlignment="Center"
                 Margin="5,0,0,5">
@@ -94,10 +94,10 @@
                     </ResourceDictionary>
                 </Label.Resources>
             </Label>
-            <StackLayout x:Name="Groups" Orientation="Horizontal" IsVisible="False" HorizontalOptions="CenterAndExpand"></StackLayout>
+            <StackLayout x:Name="Groups" Orientation="Horizontal" Opacity="0" HorizontalOptions="CenterAndExpand"></StackLayout>
             <Label
                 x:Name="GroupName" 
-                IsVisible="False" 
+                Opacity="0"
                 HorizontalOptions="CenterAndExpand" 
                 HorizontalTextAlignment="Center"
                 Margin="5,0,5,0"></Label>
