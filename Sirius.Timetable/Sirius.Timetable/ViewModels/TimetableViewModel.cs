@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Sirius.Timetable.Helpers;
 using Sirius.Timetable.Models;
 using Sirius.Timetable.Services;
+using Sirius.Timetable.Views;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
 namespace Sirius.Timetable.ViewModels
@@ -14,7 +16,6 @@ namespace Sirius.Timetable.ViewModels
 	{
 		public TimetableViewModel(DateTime? date, string team)
 		{
-
 			SelectTeamCommand = new Command(async () => await SelectTeamExecute());
 			RefreshCommand = new Command(async () => await RefreshTimetable(true));
 
@@ -31,24 +32,24 @@ namespace Sirius.Timetable.ViewModels
 			}
 		}
 
-		private async Task SelectTeamExecute()
+        private async Task SelectTeamExecute()
 		{
-			var liters = TimetableService.TeamsLiterPossibleNumbers.Select(pair => pair.Key);
-			var liter =
-				await Application.Current.MainPage.DisplayActionSheet("Выберите команду", "Отмена", null, liters.ToArray());
-			Debug.WriteLine(liter);
-			if (String.IsNullOrEmpty(liter) || liter == "Отмена")
-				return;
-			var numbers = TimetableService.TeamsLiterPossibleNumbers[liter];
-			var number = await Application.Current.MainPage.DisplayActionSheet("Выберите команду", "Отмена", null, numbers.ToArray());
-			Debug.WriteLine(number);
-			if (String.IsNullOrEmpty(number) || number == "Отмена")
-				return;
+            var selectPage = new TeamSelectPage();
 
-			_team = liter + number;
-			_date = DateTime.Parse("06/02/2017");
-			await RefreshTimetable(false);
-		}
+            var liter = await selectPage.SelectTesmAsync();
+            Debug.WriteLine(liter);
+            if (String.IsNullOrEmpty(liter) || liter == "Отмена")
+                return;
+            var numbers = TimetableService.TeamsLiterPossibleNumbers[liter];
+            var number = await Application.Current.MainPage.DisplayActionSheet("Выберите команду", "Отмена", null, numbers.ToArray());
+            Debug.WriteLine(number);
+            if (String.IsNullOrEmpty(number) || number == "Отмена")
+                return;
+
+            _team = liter + number;
+            _date = DateTime.Parse("06/02/2017");
+            await RefreshTimetable(false);
+        }
 
 		private static async void RefreshOnlyTimetable()
 		{
@@ -76,7 +77,7 @@ namespace Sirius.Timetable.ViewModels
 		}
 		public Command RefreshCommand { get; set; }
 		public Command SelectTeamCommand { get; set; }
-		public string TeamName
+        public string TeamName
 		{
 			get { return String.IsNullOrEmpty(_teamName) ? "Выбрать команду" : _teamName; }
 			set { SetProperty(ref _teamName, value); }
@@ -92,7 +93,7 @@ namespace Sirius.Timetable.ViewModels
 			set { SetProperty(ref _timetable, value); }
 		}
 
-		private ObservableCollection<TimetableItem> _timetable;
+        private ObservableCollection<TimetableItem> _timetable;
 		private string _teamName;
 		private bool _isBusy;
 		private DateTime _date;

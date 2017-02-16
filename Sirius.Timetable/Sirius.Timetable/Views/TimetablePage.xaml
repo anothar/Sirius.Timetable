@@ -10,7 +10,7 @@
     <ListView HasUnevenRows="True"
               IsPullToRefreshEnabled="True"
               ItemsSource="{Binding Timetable}"
-              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              IsRefreshing="{Binding IsBusy}"
               VerticalOptions="FillAndExpand"
               RefreshCommand="{Binding RefreshCommand}">
         <ListView.ItemTemplate>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sirius.Timetable.ViewModels;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
 namespace Sirius.Timetable.Views
