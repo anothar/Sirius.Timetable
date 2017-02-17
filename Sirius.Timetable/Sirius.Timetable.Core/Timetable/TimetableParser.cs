@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System;
 
 namespace Sirius.Timetable.Core
 {
 	public static class TimetableParser
 	{
-		public static async Task<Dictionary<string, Timetable>> GetTimetables()
+		public static async Task<Dictionary<string, Timetable>> GetTimetables(DateTime d)
 		{
-			var jsonText = await TimetableDownloader.GetJsonText();
+			var jsonText = await new TimetableDownloader().GetJsonText(d);
 			return JsonConvert.DeserializeObject<Dictionary<string, Timetable>>(jsonText);
 		}
 	}
