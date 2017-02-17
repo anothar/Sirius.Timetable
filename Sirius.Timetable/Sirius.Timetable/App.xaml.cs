@@ -1,4 +1,5 @@
-﻿using Sirius.Timetable.Views;
+﻿using Sirius.Timetable.Services;
+using Sirius.Timetable.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,18 +11,27 @@ namespace Sirius.Timetable
         public App()
 		{
 			InitializeComponent();
-
+			RegisterPages();
 			SetMainPage();
             
 		}
 
+		public enum Detail
+		{
+			Timetable
+			
+		}
+		private void RegisterPages()
+		{
+			MasterDetailsServices.DetailPages.Add(Detail.Timetable, new TimetablePage());
+		}
 		public static void SetMainPage()
 		{
 			
 			Current.MainPage = new MasterDetailPage
 			{
 				Master = new ContentPage { Title = "Master" },
-				Detail = new NavigationPage(new TimetablePage())
+				Detail = new NavigationPage(MasterDetailsServices.DetailPages[Detail.Timetable])
 			};
 			
 		}

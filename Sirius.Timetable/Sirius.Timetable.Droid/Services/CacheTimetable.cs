@@ -1,50 +1,24 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Sirius.Timetable.Core;
 using Sirius.Timetable.Core.Services;
-
-using System.Threading.Tasks;
 
 namespace Sirius.Timetable.Droid.Services
 {
     public class CacheTimetable : ICacheTimetable
     {
-        private string cacheLocation;
+        private readonly string _cacheLocation = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
-        public async Task<string> Get(DateTime toGetTimetable)
+        public string Get(DateTime dateToGet)
         {
-            string ToGetTimetable = toGetTimetable.ToString("yyyy-MM-dd") + ".json";
-            string result = System.IO.File.ReadAllText(cacheLocation + ToGetTimetable);
-            return result;
-            /*if(DateTime.Today!=lastCached)
-            {
-                    var result = await new TimetableDownloader.GetJsonText();
-                    lastCached = DateTime.Today;
-                    return result;
-            
-            */
-
+            var fileName = _cacheLocation + dateToGet.ToString("yyyy-MM-dd") + ".json";
+			if (System.IO.File.Exists(fileName))
+				return System.IO.File.ReadAllText(fileName);
+            return null;
         }
         
-        public async Task Cache(string Timetable)
+        public void Cache(string timetableJsonText, DateTime dateToCache)
         {
-            string ToGetTimetable = DateTime.Today.ToString("yyyy-MM-dd") + ".json";
-            System.IO.File.WriteAllText(cacheLocation + ToGetTimetable, Timetable);
-        }
-
-        public CacheTimetable()
-        {
-            cacheLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-
+            var fileName = _cacheLocation + dateToCache.ToString("yyyy-MM-dd") + ".json";
+            System.IO.File.WriteAllText(fileName, timetableJsonText);
         }
     }
 }

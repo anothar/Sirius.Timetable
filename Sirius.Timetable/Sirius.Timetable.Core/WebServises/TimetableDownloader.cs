@@ -1,9 +1,6 @@
 ﻿using Sirius.Timetable.Core.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Sirius.Timetable.Core
@@ -13,36 +10,37 @@ namespace Sirius.Timetable.Core
     /// </summary>
     public class TimetableDownloader
     {
-        private ICacheTimetable Cacher;
+        private readonly ICacheTimetable _cacher;
         
         public TimetableDownloader()
         {
-            Cacher = ServiceLocator.GetService<ICacheTimetable>();
+            _cacher = ServiceLocator.GetService<ICacheTimetable>();
         }
 
-	    private readonly string jsonUrl = "http://project2.sochisirius.ru/schedule/getforday/";
-        private readonly string key = "/ddd3a42ebd1ebce7f821d7d2fb04cac8";
+	    private const string JsonUrl = "http://project2.sochisirius.ru/schedule/getforday/";
+	    private const string Key = "/ddd3a42ebd1ebce7f821d7d2fb04cac8";
 
-        private string GetFileUrl(DateTime d)
+	    private static string GetFileUrl(DateTime d)
         {
-            return jsonUrl + d.ToString("yyyy-MM-dd") + key;
+            return JsonUrl + d.ToString("yyyy-MM-dd") + Key;
         }
 
 	    public async Task<string> GetJsonText(DateTime date)
 	    {
-            try
-            {
-                return await Cacher.Get(date);
-            }
-            catch(Exception e)
-            {
-                var client = new HttpClient();
-                var response = await client.GetAsync(GetFileUrl(date));
-                string result = await response.Content.ReadAsStringAsync();
-                Cacher.Cache(result);
-                return result;
-            }
-
-		}
+		    var jsonText = _cacher.Get(date);
+		    if (!String.IsNullOrEmpty(jsonText))
+				return jsonText;
+		    try
+		    {
+			    var client = new HttpClient();
+			    var result = await client.GetStringAsync(GetFileUrl(date));
+			    _cacher.Cache(result, date);
+			    return result;
+		    }
+		    catch (Exception)
+		    {
+			    return null;
+		    }
+	    }
     }
 }

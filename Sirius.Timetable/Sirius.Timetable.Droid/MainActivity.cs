@@ -7,7 +7,7 @@ using Sirius.Timetable.Core;
 namespace Sirius.Timetable.Droid
 {
 	[Activity(
-        Label = "Sirius.Timetable", 
+        Label = "Расписание Сириус", 
         Theme = "@style/MyTheme", 
         MainLauncher = true, 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)

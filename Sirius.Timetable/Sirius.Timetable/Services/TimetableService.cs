@@ -16,12 +16,12 @@ namespace Sirius.Timetable.Services
 		/// </summary>
 		public static Dictionary<string, string> KeywordDictionary { get; set; }
 		public static Dictionary<string, List<string>> TeamsLiterPossibleNumbers { get; set; }
-		public static async Task RefreshTimetables()
+		public static async Task RefreshTimetables(DateTime date)
 		{
-			Timetables = await TimetableParser.GetTimetables(DateTime.Today);
+			Timetables = await TimetableParser.GetTimetables(date);
 			KeywordDictionary = new Dictionary<string, string>();
 			TeamsLiterPossibleNumbers = new Dictionary<String, List<String>>();
-			foreach (var pair in Timetables["{date:ddMMyyyy}"].Teams)
+			foreach (var pair in Timetables[$"{date:ddMMyyyy}"].Teams)
 			{
 				var shortTeamName = pair.Key.Split()[0];
 				KeywordDictionary[shortTeamName] = pair.Key;
