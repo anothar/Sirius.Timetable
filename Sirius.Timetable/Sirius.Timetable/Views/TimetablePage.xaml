@@ -13,7 +13,8 @@
               IsRefreshing="{Binding IsBusy}"
               VerticalOptions="FillAndExpand"
               RefreshCommand="{Binding RefreshCommand}"
-              ItemTapped="ListViewOnActivitySelected"
+              ItemTapped="ListViewOnActivityTapped"
+              ItemSelected="ListViewOnActivitySelected"
               Header="{Binding Header}"
               
               >

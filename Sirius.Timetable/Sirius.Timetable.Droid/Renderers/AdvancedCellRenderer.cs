@@ -7,16 +7,19 @@ using Sirius.Timetable.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using View = Android.Views.View;
+using Android.Graphics.Drawables;
 
 [assembly: ExportRenderer(typeof(AdvancedCell), typeof(AdvancedCellRenderer))]
 namespace Sirius.Timetable.Droid.Renderers
 {
 	public class AdvancedCellRenderer : ViewCellRenderer
 	{
+		private Context _context;
 		private AdvancedCellControler _cell;
 		protected override View GetCellCore(Cell item, View convertView, ViewGroup parent, Context context)
 		{
-			var advancedCell = (AdvancedCell) item;
+			_context = context;
+			   var advancedCell = (AdvancedCell) item;
 			_cell = convertView as AdvancedCellControler;
 			if (_cell == null)
 			{
@@ -58,11 +61,15 @@ namespace Sirius.Timetable.Droid.Renderers
 			{
 				_cell.Details.Visibility = advancedCell.IsSelected ? ViewStates.Visible : ViewStates.Gone;
 				_cell.TitleTextView.SetMaxLines(advancedCell.IsSelected ? 100 : 1);
+				if (advancedCell.IsSelected) _cell.BackLayout.SetBackgroundColor(advancedCell.SelectedBackgroundColor.ToAndroid());
+				else _cell.BackLayout.SetBackgroundResource(Resource.Drawable.item_background);
 			}
 			else if (e.PropertyName == AdvancedCell.IsBusProperty.PropertyName)
 				_cell.Bus.Visibility = advancedCell.IsBus ? ViewStates.Visible : ViewStates.Gone;
 			else if (e.PropertyName == AdvancedCell.IsPlaceProperty.PropertyName)
 				_cell.PlaceTextView.Visibility = advancedCell.IsPlace ? ViewStates.Visible : ViewStates.Gone;
+			else if (e.PropertyName == AdvancedCell.SelectedBackgroundColorProperty.PropertyName && advancedCell.IsSelected)
+				_cell.BackLayout.SetBackgroundColor(advancedCell.SelectedBackgroundColor.ToAndroid());
 		}
 	}
 }
