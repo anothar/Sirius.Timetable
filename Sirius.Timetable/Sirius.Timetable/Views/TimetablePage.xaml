@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sirius.Timetable.Views.TimetablePage"
              xmlns:local="clr-namespace:Sirius.Timetable.Controls;assembly=Sirius.Timetable"
+             xmlns:services="clr-namespace:Sirius.Timetable.Services;assembly=Sirius.Timetable"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              Title="Расписание">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Выбрать расписание" Command="{Binding SelectTeamCommand}" ></ToolbarItem>
+        <ToolbarItem Text="Выбрать расписание" Command="{x:Static services:GetTeamService.GetTeamCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ListView HasUnevenRows="True"
               IsPullToRefreshEnabled="True"

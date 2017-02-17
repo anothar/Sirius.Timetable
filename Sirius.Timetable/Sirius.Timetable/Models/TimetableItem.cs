@@ -61,7 +61,7 @@ namespace Sirius.Timetable.Models
 		public string Title { get; set; }
 		public string Place
 		{
-			get { return String.IsNullOrEmpty(_place)? "" : $"Место: {_place}"; }
+			get { return String.IsNullOrEmpty(_place)? "" : _place; }
 			set { _place = value; }
 		}
 		public bool IsBus

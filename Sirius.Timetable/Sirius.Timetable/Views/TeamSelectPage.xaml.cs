@@ -124,7 +124,7 @@ namespace Sirius.Timetable.Views
         {
             var tapGroup = new TapGestureRecognizer();
             tapGroup.Tapped += OnChooseGroup;
-            var button = new Label
+            var selecter = new Label
             {
                 Text = text,
                 BackgroundColor = Color.Transparent,
@@ -134,8 +134,8 @@ namespace Sirius.Timetable.Views
                 Margin = new Thickness(2),
                 Opacity = 0.25
             };
-            button.GestureRecognizers.Add(tapGroup);
-            return button;
+            selecter.GestureRecognizers.Add(tapGroup);
+            return selecter;
         }
 
         private async void OnChoose(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using Sirius.Timetable.Models;
 using Sirius.Timetable.ViewModels;
 using Rg.Plugins.Popup.Extensions;
+using Sirius.Timetable.Services;
 using Xamarin.Forms;
 
 namespace Sirius.Timetable.Views
@@ -11,7 +12,6 @@ namespace Sirius.Timetable.Views
 		public TimetablePage()
 		{
 			InitializeComponent();
-			BindingContext = _viewModel = new TimetableViewModel(null, null);
 		}
 		
 		private void ListViewOnActivityTapped(object sender, ItemTappedEventArgs e)
@@ -20,11 +20,14 @@ namespace Sirius.Timetable.Views
 			item.IsSelected = !item.IsSelected;
 		}
 
-		private readonly TimetableViewModel _viewModel;
-
 		private void ListViewOnActivitySelected(object sender, SelectedItemChangedEventArgs e)
 		{
 			((ListView) sender).SelectedItem = null;
+		}
+
+		public void UpdateTeam()
+		{
+			BindingContext = new TimetableViewModel(DateTime.Today, GetTeamService.Team);
 		}
 	}
 }
