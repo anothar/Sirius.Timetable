@@ -26,7 +26,7 @@
                     <Image 
                     HeightRequest="60" 
                     Source="science.png" 
-                    x:Name="science"
+                    x:Name="Science"
                     Margin="10"
                     Opacity="0.25">
                     <Image.Resources>
@@ -40,7 +40,7 @@
                     <Image 
                     HeightRequest="60" 
                     Source="sport.png" 
-                    x:Name="sport"
+                    x:Name="Sport"
                     Margin="10"
                     Opacity="0.25">
                     <Image.Resources>
@@ -54,29 +54,29 @@
                     <Image 
                     HeightRequest="60" 
                     Source="art.png" 
-                    x:Name="art"
+                    x:Name="Art"
                     Margin="10"
                     Opacity="0.25">
-                    <Image.Resources>
-                        <ResourceDictionary>
-                            <x:String x:Key="tag">И</x:String>
-                        </ResourceDictionary>
-                    </Image.Resources>
-            </Image>
+                        <Image.Resources>
+                            <ResourceDictionary>
+                                <x:String x:Key="tag">И</x:String>
+                            </ResourceDictionary>
+                        </Image.Resources>
+                    </Image>
                 </StackLayout>
                 <StackLayout>
                     <Image 
                     HeightRequest="60" 
                     Source="literature.png" 
-                    x:Name="literature"
+                    x:Name="Literature"
                     Margin="10"
                     Opacity="0.25">
-                    <Image.Resources>
-                        <ResourceDictionary>
-                            <x:String x:Key="tag">Л</x:String>
-                        </ResourceDictionary>
-                    </Image.Resources>
-        </Image>
+                        <Image.Resources>
+                            <ResourceDictionary>
+                                <x:String x:Key="tag">Л</x:String>
+                            </ResourceDictionary>
+                        </Image.Resources>
+                    </Image>
                 </StackLayout>
             </StackLayout>
             <Label 

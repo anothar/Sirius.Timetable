@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Sirius.Timetable.Core.Services;
 using Sirius.Timetable.Core;
+using Sirius.Timetable.Droid.Services;
 
 namespace Sirius.Timetable.Droid
 {
@@ -16,7 +17,8 @@ namespace Sirius.Timetable.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
-            ServiceLocator.RegisterService<ICacheTimetable>(new Sirius.Timetable.Droid.Services.CacheTimetable());
+            ServiceLocator.RegisterService<ICacheTimetable>(new CacheTimetable());
+            ServiceLocator.RegisterService<ICacheLastSelectedTeam>(new CacheLastSelectedTeam());
 
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;

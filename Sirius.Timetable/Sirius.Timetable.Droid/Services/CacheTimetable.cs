@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Sirius.Timetable.Core.Services;
 
 namespace Sirius.Timetable.Droid.Services
@@ -9,15 +10,13 @@ namespace Sirius.Timetable.Droid.Services
 
         public string Get(DateTime dateToGet)
         {
-            var fileName = _cacheLocation + dateToGet.ToString("yyyy-MM-dd") + ".json";
-			if (System.IO.File.Exists(fileName))
-				return System.IO.File.ReadAllText(fileName);
-            return null;
+            var fileName = Path.Combine(_cacheLocation, dateToGet.ToString("yyyy-MM-dd") + ".json");
+			return System.IO.File.Exists(fileName) ? System.IO.File.ReadAllText(fileName) : null;
         }
         
         public void Cache(string timetableJsonText, DateTime dateToCache)
         {
-            var fileName = _cacheLocation + dateToCache.ToString("yyyy-MM-dd") + ".json";
+            var fileName = Path.Combine(_cacheLocation, dateToCache.ToString("yyyy-MM-dd") + ".json");
             System.IO.File.WriteAllText(fileName, timetableJsonText);
         }
     }

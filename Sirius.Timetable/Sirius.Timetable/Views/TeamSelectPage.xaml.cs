@@ -12,21 +12,25 @@ namespace Sirius.Timetable.Views
     {
         private readonly TaskCompletionSource<string> _completion = new TaskCompletionSource<string>();
         private bool IsSelected { get; set; }
-        public Task<string> CompletionTask => _completion.Task;
-        public string SelectedItem { get; private set; }
-        public string SelectedNumber { get; private set; }
-        public string SelectedGroup { get; private set; }
+        private Task<string> CompletionTask => _completion.Task;
+        private string SelectedItem { get; set; }
+        private string SelectedNumber { get; set; }
+        private string SelectedGroup { get; set; }
+
+        private double ImageHeight { get; } = 55;
 
         public TeamSelectPage()
         {
             InitializeComponent();
+
             var tapImg = new TapGestureRecognizer();
-			
             tapImg.Tapped += OnChooseDirection;
-            science.GestureRecognizers.Add(tapImg);
-            sport.GestureRecognizers.Add(tapImg);
-            literature.GestureRecognizers.Add(tapImg);
-            art.GestureRecognizers.Add(tapImg);
+            Science.GestureRecognizers.Add(tapImg);
+            Sport.GestureRecognizers.Add(tapImg);
+            Literature.GestureRecognizers.Add(tapImg);
+            Art.GestureRecognizers.Add(tapImg);
+
+            Art.HeightRequest = Science.HeightRequest = Sport.HeightRequest = Literature.HeightRequest = ImageHeight;
         }
 
         public async Task<string> SelectTeamAsync()
@@ -93,7 +97,7 @@ namespace Sirius.Timetable.Views
 
         private void SelectDirectionByOpacity(Image toSelect, double opacitySelected, double opacityUnselected)
         {
-            var arr = new List<Image> { science, sport, literature, art };
+            var arr = new List<Image> { Science, Sport, Literature, Art };
 	        Task.WhenAll(
 		        arr.Select(item => item.FadeTo(item != toSelect ? opacityUnselected : opacitySelected)));
         }
