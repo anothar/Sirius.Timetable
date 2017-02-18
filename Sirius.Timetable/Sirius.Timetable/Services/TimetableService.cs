@@ -11,14 +11,16 @@ namespace Sirius.Timetable.Services
 		/// Словарь с расписанием по дате. key - дата в формате ddmmyyyy, value - расписание
 		/// </summary>
 		public static Dictionary<string, Core.Timetable> Timetables { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
 		public static Dictionary<string, string> KeywordDictionary { get; set; }
 		public static Dictionary<string, List<string>> TeamsLiterPossibleNumbers { get; set; }
 		public static async Task RefreshTimetables(DateTime date)
 		{
-			Timetables = await TimetableParser.GetTimetables(date);
+			var timetables = await TimetableParser.GetTimetables(date);
+			if (timetables == null)
+			{
+				throw new Exception();
+			}
+			Timetables = timetables;
 			KeywordDictionary = new Dictionary<string, string>();
 			TeamsLiterPossibleNumbers = new Dictionary<String, List<String>>();
 			foreach (var pair in Timetables[$"{date:ddMMyyyy}"].Teams)

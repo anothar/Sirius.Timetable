@@ -12,7 +12,19 @@ namespace Sirius.Timetable.Services
 
 		private static async Task GetTeamExecute()
 		{
-			await TimetableService.RefreshTimetables(DateTime.Today);
+			try
+			{
+				if(TimetableService.Timetables == null)
+					await TimetableService.RefreshTimetables(DateTime.Today);
+			}
+			catch (Exception)
+			{
+				await
+					Application.Current.MainPage.DisplayAlert("Произошла ошибка при загрузке данных",
+						"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку", "Ок");
+				return;
+			}
+
 			var selectPage = new TeamSelectPage();
 			var selectedGroup = await selectPage.SelectTeamAsync();
 

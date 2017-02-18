@@ -4,12 +4,11 @@
              x:Class="Sirius.Timetable.Views.TimetablePage"
              xmlns:local="clr-namespace:Sirius.Timetable.Controls;assembly=Sirius.Timetable"
              xmlns:services="clr-namespace:Sirius.Timetable.Services;assembly=Sirius.Timetable"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              Title="Расписание">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Выбрать расписание" Command="{x:Static services:GetTeamService.GetTeamCommand}"></ToolbarItem>
+        <ToolbarItem Text="Выбрать" Command="{x:Static services:GetTeamService.GetTeamCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
-    <ListView HasUnevenRows="True"
+        <ListView HasUnevenRows="True"
               IsPullToRefreshEnabled="True"
               ItemsSource="{Binding Timetable}"
               IsRefreshing="{Binding IsBusy}"
@@ -20,20 +19,24 @@
               Header="{Binding Header}"
               
               >
-        <ListView.HeaderTemplate>
-            <DataTemplate>
-                    <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}" IsVisible="{Binding IsLoaded}" Padding="5">
-                        <Label Text="{Binding Team}" LineBreakMode="TailTruncation" FontSize="20" TextColor="White"></Label>
-                        <Label Text="{Binding Date}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" LineBreakMode="NoWrap" FontSize="20" TextColor="White"></Label>
-                    </StackLayout>
-            </DataTemplate>
-        </ListView.HeaderTemplate>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <local:AdvancedCell 
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                <Grid BackgroundColor="{StaticResource Primary}" IsVisible="{Binding IsLoaded}" Padding="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="{Binding Team}" HorizontalTextAlignment="End" LineBreakMode="TailTruncation" FontSize="18" TextColor="White" ></Label>
+                    <Label Grid.Row="1" Text="{Binding Date}" HorizontalTextAlignment="End" FontSize="15" TextColor="White" LineBreakMode="NoWrap"></Label>
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:AdvancedCell 
                     End="{Binding End}" 
                     Start="{Binding Start}" 
-                    SelectedBackgroundColor="{StaticResource Accent}" 
+                    SelectedBackgroundColor="Transparent" 
                     BusFrom="{Binding BusFrom}" 
                     BusTo="{Binding BusTo}" 
                     BackgroundColor="White" 
@@ -42,8 +45,8 @@
                     IsSelected="{Binding IsSelected, Mode=OneWay}"
                     Title="{Binding Title}"
                     Place="{Binding Place}"
-                    MainTextSize="18" DetailTextSize="15"></local:AdvancedCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                    MainTextSize="16" DetailTextSize="14"></local:AdvancedCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 </ContentPage>
