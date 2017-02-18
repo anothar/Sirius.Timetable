@@ -29,5 +29,6 @@ namespace Sirius.Timetable.Views
 		{
 			BindingContext = new TimetableViewModel(DateTime.Today, GetTeamService.Team);
 		}
+
 	}
 }

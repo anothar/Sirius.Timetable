@@ -33,7 +33,9 @@ namespace Sirius.Timetable.Core
 		    try
 		    {
 			    var client = new HttpClient();
-			    var result = await client.GetStringAsync(GetFileUrl(date));
+			    var test = GetFileUrl(date);
+
+				var result = await client.GetStringAsync(test);
 			    _cacher.Cache(result, date);
 			    return result;
 		    }

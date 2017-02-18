@@ -13,10 +13,10 @@ namespace Sirius.Timetable.ViewModels
 	{
 		public TimetableViewModel(DateTime date, string team)
 		{
-			RefreshCommand = new Command(async () => await RefreshTimetable(true));
+			RefreshCommand = new Command(async arg => await RefreshTimetable(arg as bool?));
 			_date = date;
 			_team = team;
-			RefreshCommand.Execute(null);
+			RefreshCommand.Execute(false);
 
 			Header = new TimetableHeader
 			{
@@ -33,9 +33,9 @@ namespace Sirius.Timetable.ViewModels
 		}
 
 		private TimetableHeader _header;
-		private async Task RefreshTimetable(bool hard)
+		private async Task RefreshTimetable(bool? hard)
 		{
-			if (hard)
+			if (hard != null && hard.Value)
 				await TimetableService.RefreshTimetables(_date);
 
 			var dateKey = _date.ToString("dd.MM.yyyy").Replace(".", "");

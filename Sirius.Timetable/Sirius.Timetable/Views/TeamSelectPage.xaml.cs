@@ -43,7 +43,7 @@ namespace Sirius.Timetable.Views
             {
                 SelectGroupByOpacity(Groups.Children[0], 0.25, 0.25);
             }
-            if (SelectedItem == ((Image) sender).Resources["tag"].ToString() && Groups.Opacity == 1)
+            if (SelectedItem == ((Image) sender).Resources["tag"].ToString() && Groups.Opacity == 1.0)
             {
                 TitleText.Text = TitleText.Resources["1"].ToString();
                 SelectDirectionByOpacity((Image)sender, 0.25, 0.25);

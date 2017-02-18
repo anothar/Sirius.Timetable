@@ -10,7 +10,7 @@ namespace Sirius.Timetable.Core
 		public static async Task<Dictionary<string, Timetable>> GetTimetables(DateTime d)
 		{
 			var jsonText = await new TimetableDownloader().GetJsonText(d);
-			return JsonConvert.DeserializeObject<Dictionary<string, Timetable>>(jsonText);
+			return String.IsNullOrEmpty(jsonText) ? null : JsonConvert.DeserializeObject<Dictionary<string, Timetable>>(jsonText);
 		}
 	}
 }
