@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Extensions;
 using Sirius.Timetable.Views;
 using Xamarin.Forms;
 
@@ -14,14 +15,20 @@ namespace Sirius.Timetable.Services
 		{
 			try
 			{
-				if(TimetableService.Timetables == null)
-					await TimetableService.RefreshTimetables(DateTime.Today);
+			    if (TimetableService.Timetables == null)
+			    {
+			        await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingView());
+			        await TimetableService.RefreshTimetables(DateTime.Today);
+			        await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+			    }
 			}
 			catch (Exception)
-			{
-				await
-					Application.Current.MainPage.DisplayAlert("Произошла ошибка при загрузке данных",
-						"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку", "Ок");
+            {
+                await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+                await Application.Current.MainPage.DisplayAlert(
+                    "Произошла ошибка при загрузке данных",
+					"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку", 
+                    "Ок");
 				return;
 			}
 
