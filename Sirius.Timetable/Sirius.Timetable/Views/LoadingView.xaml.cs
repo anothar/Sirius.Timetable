@@ -15,7 +15,7 @@ namespace Sirius.Timetable.Views
             InitializeComponent();
 
             var tap = new TapGestureRecognizer();
-            tap.Tapped += (object s, EventArgs e) => { return; };
+            tap.Tapped += (s, e) => { };
             Background.GestureRecognizers.Add(tap);
         }
     }

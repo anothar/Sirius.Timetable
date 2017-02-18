@@ -19,6 +19,7 @@ namespace Sirius.Timetable.Droid
 		{
             ServiceLocator.RegisterService<ICacheTimetable>(new CacheTimetable());
             ServiceLocator.RegisterService<ICacheLastSelectedTeam>(new CacheLastSelectedTeam());
+			ServiceLocator.RegisterService<INotificationService>(new Notificator(this));
 
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Extensions;
 using Sirius.Timetable.Views;
 using Xamarin.Forms;
 
@@ -14,8 +15,12 @@ namespace Sirius.Timetable.Services
 		{
 			try
 			{
-				if(TimetableService.Timetables == null)
+				if (TimetableService.Timetables == null)
+				{
+					await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingView());
 					await TimetableService.RefreshTimetables(DateTime.Today);
+					await Application.Current.MainPage.Navigation.PopPopupAsync();
+				}
 			}
 			catch (Exception)
 			{
