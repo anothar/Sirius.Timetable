@@ -13,10 +13,11 @@ namespace Sirius.Timetable.Views
         public LoadingView()
         {
             InitializeComponent();
+        }
 
-            var tap = new TapGestureRecognizer();
-            tap.Tapped += (s, e) => { };
-            Background.GestureRecognizers.Add(tap);
+        protected override bool OnBackgroundClicked()
+        {
+            return false;
         }
     }
 }

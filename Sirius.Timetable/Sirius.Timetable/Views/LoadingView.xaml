@@ -2,12 +2,22 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 x:Class="Sirius.Timetable.Views.LoadingView">
-  <RelativeLayout
-    x:Name="Background"
-    BackgroundColor="White"
-    HorizontalOptions="Center"
-    VerticalOptions="Center">
-      <Label Text="Загрузка" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20" MinimumWidthRequest="200" MinimumHeightRequest="100" BackgroundColor="White"></Label>
-  </RelativeLayout>
+             x:Class="Sirius.Timetable.Views.LoadingView"
+             BackgroundColor="Transparent">
+    <AbsoluteLayout
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+        <Label 
+            Text="Загрузка ..."
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="200"
+            HeightRequest="150"
+            BackgroundColor="Transparent"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            FontSize="30"
+            TextColor="Black">
+        </Label>
+    </AbsoluteLayout>
 </pages:PopupPage>

@@ -15,18 +15,20 @@ namespace Sirius.Timetable.Services
 		{
 			try
 			{
-				if (TimetableService.Timetables == null)
-				{
-					await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingView());
-					await TimetableService.RefreshTimetables(DateTime.Today);
-					await Application.Current.MainPage.Navigation.PopPopupAsync();
-				}
+			    if (TimetableService.Timetables == null)
+			    {
+			        await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingView());
+			        await TimetableService.RefreshTimetables(DateTime.Today);
+			        await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+			    }
 			}
 			catch (Exception)
-			{
-				await
-					Application.Current.MainPage.DisplayAlert("Произошла ошибка при загрузке данных",
-						"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку", "Ок");
+            {
+                await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+                await Application.Current.MainPage.DisplayAlert(
+                    "Произошла ошибка при загрузке данных",
+					"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку", 
+                    "Ок");
 				return;
 			}
 
