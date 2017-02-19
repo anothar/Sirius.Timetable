@@ -12,6 +12,12 @@ namespace Sirius.Timetable.ViewModels
 {
 	public class TimetableViewModel : ObservableObject
 	{
+		private readonly string _team;
+		private DateTime _date;
+
+		private TimetableHeader _header;
+		private bool _isBusy;
+		private ObservableCollection<TimetableItem> _timetable;
 
 		public TimetableViewModel(DateTime date, string team, bool isUp)
 		{
@@ -32,6 +38,28 @@ namespace Sirius.Timetable.ViewModels
 			UpdateCurrentAction();
 		}
 
+		public TimetableHeader Header
+		{
+			get { return _header; }
+			set { SetProperty(ref _header, value); }
+		}
+
+		public Command RefreshCommand { get; set; }
+
+		public bool IsBusy
+		{
+			get { return _isBusy; }
+			set { SetProperty(ref _isBusy, value); }
+		}
+
+		public ObservableCollection<TimetableItem> Timetable
+		{
+			get { return _timetable; }
+			set { SetProperty(ref _timetable, value); }
+		}
+
+		public string Team => TimetableService.KeywordDictionary[_team];
+
 		private void UpdateCurrentAction()
 		{
 			var time = ServiceLocator.GetService<IDateTimeService>().GetCurrentTime();
@@ -39,7 +67,7 @@ namespace Sirius.Timetable.ViewModels
 			{
 				var startTime = _date.AddHours(item.Parent.Start.Value.Hour).AddMinutes(item.Parent.Start.Value.Minute);
 				var endTime = _date.AddHours(item.Parent.End.Value.Hour).AddMinutes(item.Parent.End.Value.Minute);
-				if (startTime <= time && time <= endTime)
+				if ((startTime <= time) && (time <= endTime))
 					item.Color = Color.FromHex("#10ff007b");
 				else if (endTime < time)
 					item.Color = Color.FromHex("#88CBCBCB");
@@ -48,18 +76,9 @@ namespace Sirius.Timetable.ViewModels
 			}
 		}
 
-		public TimetableHeader Header
-		{
-			get { return _header; }
-			set { SetProperty(ref _header, value); }
-		}
-
-		private TimetableHeader _header;
-
 		private async Task RefreshTimetable(bool? hard)
 		{
-			if (hard == null || hard.Value)
-			{
+			if ((hard == null) || hard.Value)
 				try
 				{
 					await TimetableService.RefreshTimetables(_date);
@@ -73,7 +92,6 @@ namespace Sirius.Timetable.ViewModels
 					IsBusy = false;
 					return;
 				}
-			}
 
 			var dateKey = _date.ToString("dd.MM.yyyy").Replace(".", "");
 			var timetable = TimetableService.Timetables[dateKey];
@@ -83,21 +101,5 @@ namespace Sirius.Timetable.ViewModels
 			UpdateCurrentAction();
 			IsBusy = false;
 		}
-		public Command RefreshCommand { get; set; }
-		public bool IsBusy
-		{
-			get { return _isBusy; }
-			set { SetProperty(ref _isBusy, value); }
-		}
-		public ObservableCollection<TimetableItem> Timetable
-		{
-			get { return _timetable; }
-			set { SetProperty(ref _timetable, value); }
-		}
-		public string Team => TimetableService.KeywordDictionary[_team];
-		private ObservableCollection<TimetableItem> _timetable;
-		private bool _isBusy;
-		private DateTime _date;
-		private readonly string _team;
 	}
 }

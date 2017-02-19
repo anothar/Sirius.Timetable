@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sirius.Timetable.Views.TimetablePage"
@@ -6,12 +7,12 @@
              xmlns:services="clr-namespace:Sirius.Timetable.Services;assembly=Sirius.Timetable"
              Title="Расписание">
     <ContentPage.BindingContext>
-        <services:GetTeamService></services:GetTeamService>
+        <services:GetTeamService />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Выбрать" Command="{Binding GetTeamCommand}" CommandParameter="True"></ToolbarItem>
+        <ToolbarItem Text="Выбрать" Command="{Binding GetTeamCommand}" CommandParameter="True" />
     </ContentPage.ToolbarItems>
-        <ListView HasUnevenRows="True"
+    <ListView HasUnevenRows="True"
               IsPullToRefreshEnabled="True"
               ItemsSource="{Binding Timetable}"
               IsRefreshing="{Binding IsBusy}"
@@ -20,41 +21,46 @@
               ItemTapped="ListViewOnActivityTapped"
               ItemSelected="ListViewOnActivitySelected"
               Header="{Binding Header}"
-              x:Name="ListView"
-              >
-            <ListView.HeaderTemplate>
-                <DataTemplate>
+              x:Name="ListView">
+        <ListView.HeaderTemplate>
+            <DataTemplate>
                 <Grid BackgroundColor="{StaticResource Primary}" IsVisible="{Binding IsLoaded}" Padding="5">
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Text="{Binding Team}" HorizontalTextAlignment="End" LineBreakMode="TailTruncation" FontSize="18" TextColor="White" ></Label>
-                    <Label Grid.Row="1" Text="{Binding Date}" HorizontalTextAlignment="End" FontSize="15" TextColor="White" LineBreakMode="NoWrap"></Label>
-                    </Grid>
-                </DataTemplate>
-            </ListView.HeaderTemplate>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <local:AdvancedCell 
-                    End="{Binding End}" 
-                    Start="{Binding Start}" 
-                    SelectedBackgroundColor="Transparent" 
-                    BusFrom="{Binding BusFrom}" 
-                    BusTo="{Binding BusTo}" 
-                    BackgroundColor="{Binding Color}" 
-                    IsPlace="{Binding IsPlace, Mode=OneWay}" 
-                    IsBus="{Binding IsBus, Mode=OneWay}" 
+                    <Label Grid.Row="0" Text="{Binding Team}" HorizontalTextAlignment="End"
+                           LineBreakMode="TailTruncation" FontSize="16" TextColor="White" />
+                    <Label Grid.Row="1" Text="{Binding Date}" HorizontalTextAlignment="End" FontSize="15"
+                           TextColor="White" LineBreakMode="NoWrap">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DateLableOnTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </DataTemplate>
+        </ListView.HeaderTemplate>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <local:AdvancedCell
+                    End="{Binding End}"
+                    Start="{Binding Start}"
+                    SelectedBackgroundColor="Transparent"
+                    BusFrom="{Binding BusFrom}"
+                    BusTo="{Binding BusTo}"
+                    BackgroundColor="{Binding Color}"
+                    IsPlace="{Binding IsPlace, Mode=OneWay}"
+                    IsBus="{Binding IsBus, Mode=OneWay}"
                     IsSelected="{Binding IsSelected, Mode=OneWay}"
                     Title="{Binding Title}"
                     Place="{Binding Place}"
-                    PhoneMainTextSize="14" 
+                    PhoneMainTextSize="14"
                     PhoneMaxLines="2"
                     PhoneDetailTextSize="12"
-                    TabletMainTextSize="16" 
+                    TabletMainTextSize="16"
                     TabletMaxLines="1"
-                    TabletDetailTextSize="14"></local:AdvancedCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    TabletDetailTextSize="14" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

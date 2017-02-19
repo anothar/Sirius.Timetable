@@ -58,84 +58,100 @@ namespace Sirius.Timetable.Controls
 
 		public Color SelectedBackgroundColor
 		{
-			get { return (Color)GetValue(SelectedBackgroundColorProperty); }
-			set { SetValue(SelectedBackgroundColorProperty, value);}
+			get { return (Color) GetValue(SelectedBackgroundColorProperty); }
+			set { SetValue(SelectedBackgroundColorProperty, value); }
 		}
+
 		public Color BackgroundColor
 		{
-			get { return (Color)GetValue(BackgroundColorProperty); }
+			get { return (Color) GetValue(BackgroundColorProperty); }
 			set { SetValue(BackgroundColorProperty, value); }
 		}
+
 		public bool IsSelected
 		{
 			get { return (bool) GetValue(IsSelectedProperty); }
-			set { SetValue(IsSelectedProperty, value);}
+			set { SetValue(IsSelectedProperty, value); }
 		}
+
 		public string Start
 		{
 			get { return (string) GetValue(StartProperty); }
 			set { SetValue(StartProperty, value); }
 		}
+
 		public string End
 		{
 			get { return (string) GetValue(EndProperty); }
 			set { SetValue(EndProperty, value); }
 		}
+
 		public string Title
 		{
 			get { return (string) GetValue(TitleProperty); }
 			set { SetValue(TitleProperty, value); }
 		}
+
 		public string BusTo
 		{
 			get { return (string) GetValue(BusToProperty); }
 			set { SetValue(BusFromProperty, value); }
 		}
+
 		public string BusFrom
 		{
 			get { return (string) GetValue(BusFromProperty); }
 			set { SetValue(BusFromProperty, value); }
 		}
+
 		public string Place
 		{
 			get { return (string) GetValue(PlaceProperty); }
 			set { SetValue(PlaceProperty, value); }
 		}
+
 		public bool IsBus
 		{
 			get { return (bool) GetValue(IsBusProperty); }
 			set { SetValue(IsBusProperty, value); }
 		}
+
 		public bool IsPlace
 		{
 			get { return (bool) GetValue(IsPlaceProperty); }
 			set { SetValue(IsPlaceProperty, value); }
 		}
+
 		public int PhoneMainTextSize
 		{
 			get { return (int) GetValue(PhoneMainTextSizeProperty); }
 			set { SetValue(PhoneMainTextSizeProperty, value); }
 		}
+
 		public int TabletMainTextSize
 		{
 			get { return (int) GetValue(TabletMainTextSizeProperty); }
 			set { SetValue(TabletMainTextSizeProperty, value); }
 		}
+
 		public int PhoneDetailTextSize
 		{
 			get { return (int) GetValue(PhoneDetailTextSizeProperty); }
 			set { SetValue(PhoneDetailTextSizeProperty, value); }
 		}
+
 		public int TabletDetailTextSize
 		{
 			get { return (int) GetValue(TabletDetailTextSizeProperty); }
 			set { SetValue(TabletDetailTextSizeProperty, value); }
 		}
+
 		public int PhoneMaxLines
 		{
 			get { return (int) GetValue(PhoneMaxLinesProperty); }
 			set { SetValue(PhoneMaxLinesProperty, value); }
 		}
+
 		public int TabletMaxLines
 		{
 			get { return (int) GetValue(TabletMaxLinesProperty); }

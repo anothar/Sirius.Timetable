@@ -10,20 +10,6 @@ namespace Sirius.Timetable.Droid.Controls
 {
 	public sealed class AdvancedCellControler : LinearLayout, INativeElementView
 	{
-		public TextView StartTextView { get; set; }
-		public LinearLayout BackLayout { get; set; }
-		public TextView DashTextView { get; set; }
-		public TextView EndTextView { get; set; }
-		public TextView TitleTextView { get; set; }
-		public TextView BusToTextView { get; set; }
-		public ImageView BusHelper1 { get; set; }
-		public ImageView BusHelper2 { get; set; }
-		public TextView BusFromTextView { get; set; }
-		public TextView PlaceTextView { get; set; }
-		public LinearLayout Details { get; set; }
-		public LinearLayout Bus { get; set; }
-		public AdvancedCell AdvancedCell { get; set; }
-		public Element Element => AdvancedCell;
 		public AdvancedCellControler(Context context, AdvancedCell advancedCell) : base(context)
 		{
 			AdvancedCell = advancedCell;
@@ -44,6 +30,21 @@ namespace Sirius.Timetable.Droid.Controls
 			AddView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
 		}
 
+		public TextView StartTextView { get; set; }
+		public LinearLayout BackLayout { get; set; }
+		public TextView DashTextView { get; set; }
+		public TextView EndTextView { get; set; }
+		public TextView TitleTextView { get; set; }
+		public TextView BusToTextView { get; set; }
+		public ImageView BusHelper1 { get; set; }
+		public ImageView BusHelper2 { get; set; }
+		public TextView BusFromTextView { get; set; }
+		public TextView PlaceTextView { get; set; }
+		public LinearLayout Details { get; set; }
+		public LinearLayout Bus { get; set; }
+		public AdvancedCell AdvancedCell { get; set; }
+		public Element Element => AdvancedCell;
+
 		public void UpdateCell(AdvancedCell cell)
 		{
 			StartTextView.Text = cell.Start;
@@ -60,13 +61,15 @@ namespace Sirius.Timetable.Droid.Controls
 
 			if (Device.Idiom == TargetIdiom.Phone)
 			{
-				StartTextView.TextSize = EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.PhoneMainTextSize;
+				StartTextView.TextSize =
+					EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.PhoneMainTextSize;
 				BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = cell.PhoneDetailTextSize;
 				TitleTextView.SetMaxLines(cell.PhoneMaxLines);
 			}
 			else
 			{
-				StartTextView.TextSize = EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.TabletMainTextSize;
+				StartTextView.TextSize =
+					EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.TabletMainTextSize;
 				BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = cell.TabletDetailTextSize;
 				TitleTextView.SetMaxLines(cell.TabletMaxLines);
 			}

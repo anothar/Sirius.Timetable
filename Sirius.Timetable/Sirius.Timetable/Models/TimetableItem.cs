@@ -7,6 +7,16 @@ namespace Sirius.Timetable.Models
 {
 	public class TimetableItem : ObservableObject
 	{
+		private string _busFrom;
+		private string _busTo;
+		private Color _color = Color.Transparent;
+		private bool _isBus;
+		private bool _isPlace;
+		private bool _isSelected;
+		private string _place;
+		private string _start;
+		private LineBreakMode _warp = LineBreakMode.TailTruncation;
+
 		public TimetableItem(Activity activity)
 		{
 			Parent = activity;
@@ -19,17 +29,21 @@ namespace Sirius.Timetable.Models
 			IsBus = !String.IsNullOrEmpty(BusTo);
 			IsPlace = !String.IsNullOrEmpty(Place);
 		}
+
 		public Activity Parent { get; }
+
 		public LineBreakMode Wrap
 		{
 			get { return _warp; }
 			set { SetProperty(ref _warp, value); }
 		}
+
 		public Color Color
 		{
-			get { return _color; } 
+			get { return _color; }
 			set { SetProperty(ref _color, value); }
 		}
+
 		public bool IsSelected
 		{
 			get { return _isSelected; }
@@ -40,46 +54,45 @@ namespace Sirius.Timetable.Models
 				OnPropertyChanged(nameof(IsBus));
 			}
 		}
+
 		public string Start
 		{
 			get { return _start; }
 			set { SetProperty(ref _start, value); }
 		}
+
 		public string End { get; set; }
+
 		public string BusTo
 		{
 			get { return String.IsNullOrEmpty(_busTo) ? "" : _busTo; }
 			set { _busTo = value; }
 		}
+
 		public string BusFrom
 		{
 			get { return String.IsNullOrEmpty(_busFrom) ? "" : _busFrom; }
 			set { _busFrom = value; }
 		}
+
 		public string Title { get; set; }
+
 		public string Place
 		{
-			get { return String.IsNullOrEmpty(_place)? "" : _place; }
+			get { return String.IsNullOrEmpty(_place) ? "" : _place; }
 			set { _place = value; }
 		}
+
 		public bool IsBus
 		{
-			get { return _isBus && _isSelected;}
+			get { return _isBus && _isSelected; }
 			set { SetProperty(ref _isBus, value); }
 		}
+
 		public bool IsPlace
 		{
 			get { return _isPlace && _isSelected; }
 			set { SetProperty(ref _isPlace, value); }
 		}
-		private bool _isBus; 
-		private bool _isSelected;
-		private Color _color = Color.Transparent;
-		private LineBreakMode _warp = LineBreakMode.TailTruncation;
-		private string _place;
-		private string _busTo;
-		private string _busFrom;
-		private bool _isPlace;
-		private string _start;
 	}
 }

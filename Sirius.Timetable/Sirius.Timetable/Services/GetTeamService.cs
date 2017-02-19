@@ -9,41 +9,44 @@ namespace Sirius.Timetable.Services
 {
 	public class GetTeamService : ObservableObject
 	{
+		private bool _isBusy;
+
 		public GetTeamService()
 		{
 			GetTeamCommand = new Command(async o => await GetTeamExecute(), CanExecute);
 		}
+
 		public bool IsBusy
 		{
 			get { return _isBusy; }
 			set { SetProperty(ref _isBusy, value); }
 		}
+
 		public Command GetTeamCommand { get; set; }
+		public static string Team { get; set; }
+
 		private bool CanExecute(object o)
 		{
 			return !_isBusy;
 		}
-		public static string Team { get; set; }
-		private bool _isBusy;
+
 		private async Task GetTeamExecute()
 		{
 			_isBusy = true;
 			GetTeamCommand.ChangeCanExecute();
 			try
 			{
-			    if (TimetableService.Timetables == null)
-			    {
+				if (TimetableService.Timetables == null)
 					await TimetableService.RefreshTimetables(DateTime.Today);
-				}
 			}
 			catch (Exception)
-            {
-                await Application.Current.MainPage.Navigation.PopAllPopupAsync();
-                await Application.Current.MainPage.DisplayAlert(
-                    "Произошла ошибка при загрузке данных",
-					"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку", 
-                    "Ок");
-	            IsBusy = false;
+			{
+				await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+				await Application.Current.MainPage.DisplayAlert(
+					"Произошла ошибка при загрузке данных",
+					"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку",
+					"Ок");
+				IsBusy = false;
 				GetTeamCommand.ChangeCanExecute();
 				return;
 			}
@@ -58,7 +61,7 @@ namespace Sirius.Timetable.Services
 				return;
 			}
 			Team = selectedGroup;
-			((TimetablePage)MasterDetailsServices.DetailPages[App.Detail.Timetable]).UpdateTeam();
+			((TimetablePage) MasterDetailsServices.DetailPages[App.Detail.Timetable]).UpdateTeam();
 			IsBusy = false;
 			GetTeamCommand.ChangeCanExecute();
 		}

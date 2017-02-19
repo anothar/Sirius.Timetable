@@ -9,9 +9,10 @@ namespace Sirius.Timetable.Droid.Services
 		private readonly Timer _timer;
 		private Action _action;
 		private ElapsedEventHandler _handler;
+
 		public TimerSerice()
 		{
-			_timer = new Timer { Interval = 60000 };
+			_timer = new Timer {Interval = 60000};
 		}
 
 		public void AddHandler(Action action)

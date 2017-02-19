@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Android.Content;
+using Android.Text;
 using Android.Views;
 using Sirius.Timetable.Controls;
 using Sirius.Timetable.Droid.Controls;
@@ -7,26 +8,23 @@ using Sirius.Timetable.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using View = Android.Views.View;
-using Android.Text;
 
 [assembly: ExportRenderer(typeof(AdvancedCell), typeof(AdvancedCellRenderer))]
+
 namespace Sirius.Timetable.Droid.Renderers
 {
 	public class AdvancedCellRenderer : ViewCellRenderer
 	{
 		private AdvancedCellControler _cell;
+
 		protected override View GetCellCore(Cell item, View convertView, ViewGroup parent, Context context)
 		{
 			var advancedCell = (AdvancedCell) item;
 			_cell = convertView as AdvancedCellControler;
 			if (_cell == null)
-			{
 				_cell = new AdvancedCellControler(context, advancedCell);
-			}
 			else
-			{
 				_cell.AdvancedCell.PropertyChanged -= AdvancedCellOnPropertyChnaged;
-			}
 			advancedCell.PropertyChanged += AdvancedCellOnPropertyChnaged;
 
 			_cell.UpdateCell(advancedCell);

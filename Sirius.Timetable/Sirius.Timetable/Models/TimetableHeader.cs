@@ -5,11 +5,16 @@ namespace Sirius.Timetable.Models
 {
 	public class TimetableHeader : ObservableObject
 	{
+		private string _date;
+		private bool _isLoaded;
+		private string _team;
+
 		public string Team
 		{
 			get { return _team; }
 			set { SetProperty(ref _team, value); }
 		}
+
 		public string Date
 		{
 			get { return String.IsNullOrEmpty(_date) ? "" : _date; }
@@ -21,8 +26,5 @@ namespace Sirius.Timetable.Models
 			get { return _isLoaded; }
 			set { SetProperty(ref _isLoaded, value); }
 		}
-		private string _team;
-		private bool _isLoaded;
-		private string _date;
 	}
 }

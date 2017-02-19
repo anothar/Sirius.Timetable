@@ -1,28 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.App;
-using Android.Views;
-using Android.Widget;
 using Sirius.Timetable.Core.Services;
+using Activity = Sirius.Timetable.Core.Activity;
 
 namespace Sirius.Timetable.Droid.Services
 {
 	public class Notificator : INotificationService
 	{
+		private readonly Context _context;
+
 		public Notificator(Context context)
 		{
 			_context = context;
 		}
 
-		private readonly Context _context;
-		public void CreateNotification(Core.Activity activity, DateTime date, string title)
+		public void CreateNotification(Activity activity, DateTime date, string title)
 		{
 			var mBuilder = new NotificationCompat.Builder(_context)
 				.SetContentTitle(title)
@@ -41,10 +35,11 @@ namespace Sirius.Timetable.Droid.Services
 	{
 		public static string NotificationId { get; set; } = "notificationId";
 		public static string Notification { get; set; } = "notification";
+
 		public override void OnReceive(Context context, Intent intent)
 		{
 			var notificationManager = (NotificationManager) context.GetSystemService(Context.NotificationService);
-			var notification = (Notification)intent.GetParcelableExtra(Notification);
+			var notification = (Notification) intent.GetParcelableExtra(Notification);
 			var id = intent.GetIntExtra(NotificationId, 0);
 			notificationManager.Notify(id, notification);
 		}
