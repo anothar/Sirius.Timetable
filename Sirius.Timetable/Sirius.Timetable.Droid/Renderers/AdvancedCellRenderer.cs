@@ -49,16 +49,17 @@ namespace Sirius.Timetable.Droid.Renderers
 				_cell.TitleTextView.Text = advancedCell.Title;
 			else if (e.PropertyName == AdvancedCell.PlaceProperty.PropertyName) //Place
 				_cell.PlaceTextView.Text = advancedCell.Place;
-			else if (e.PropertyName == AdvancedCell.MainTextSizeProperty.PropertyName) //MainTextSize
-				_cell.StartTextView.TextSize = _cell.EndTextView.TextSize = _cell.DashTextView.TextSize = _cell.TitleTextView.TextSize = advancedCell.MainTextSize;
-			else if (e.PropertyName == AdvancedCell.DetailTextSizeProperty.PropertyName) //DetailTextSize
-				_cell.BusToTextView.TextSize =
-					_cell.BusFromTextView.TextSize =
-						_cell.PlaceTextView.TextSize = advancedCell.DetailTextSize;
 			else if (e.PropertyName == AdvancedCell.IsSelectedProperty.PropertyName) // IsSelected
 			{
 				_cell.Details.Visibility = advancedCell.IsSelected ? ViewStates.Visible : ViewStates.Gone;
-				_cell.TitleTextView.SetSingleLine(!advancedCell.IsSelected);
+				if (Device.Idiom == TargetIdiom.Phone)
+				{
+					_cell.TitleTextView.SetMaxLines(advancedCell.IsSelected ? 100 : advancedCell.PhoneMaxLines);
+				}
+				else
+				{
+					_cell.TitleTextView.SetMaxLines(advancedCell.IsSelected ? 100 : advancedCell.TabletMaxLines);
+				}
 				_cell.TitleTextView.Ellipsize = advancedCell.IsSelected ? null : TextUtils.TruncateAt.Marquee;
 			}
 			else if (e.PropertyName == AdvancedCell.IsBusProperty.PropertyName) // IsBus

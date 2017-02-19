@@ -48,7 +48,12 @@
                     IsSelected="{Binding IsSelected, Mode=OneWay}"
                     Title="{Binding Title}"
                     Place="{Binding Place}"
-                    MainTextSize="16" DetailTextSize="14"></local:AdvancedCell>
+                    PhoneMainTextSize="14" 
+                    PhoneMaxLines="2"
+                    PhoneDetailTextSize="12"
+                    TabletMainTextSize="16" 
+                    TabletMaxLines="1"
+                    TabletDetailTextSize="14"></local:AdvancedCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

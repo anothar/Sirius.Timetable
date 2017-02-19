@@ -20,7 +20,7 @@ namespace Sirius.Timetable.ViewModels
 			_team = team;
 			RefreshCommand.Execute(!isUp);
 			var timer = ServiceLocator.GetService<ITimerService>();
-			var cacher = ServiceLocator.GetService<ICacheLastSelectedTeam>();
+			var cacher = ServiceLocator.GetService<ISelectedTeamCacher>();
 			cacher.Cache(_team);
 			timer.AddHandler(UpdateCurrentAction);
 			Header = new TimetableHeader

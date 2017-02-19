@@ -147,6 +147,7 @@
     <Compile Include="Renderers\AdvancedCellRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DateTimeService.cs" />
     <Compile Include="Services\SelectedTeamCacher.cs" />
     <Compile Include="Services\TimetableCacher.cs" />
     <Compile Include="Services\Notificator.cs" />

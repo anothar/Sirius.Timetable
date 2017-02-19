@@ -12,7 +12,7 @@ namespace Sirius.Timetable.Views
 		public TimetablePage()
 		{
 			InitializeComponent();
-			var cache = ServiceLocator.GetService<ICacheLastSelectedTeam>();
+			var cache = ServiceLocator.GetService<ISelectedTeamCacher>();
 			var team = cache.Get();
 			if (String.IsNullOrEmpty(team)) return;
 			ListView.BindingContext = new TimetableViewModel(DateTime.Today, team, false);

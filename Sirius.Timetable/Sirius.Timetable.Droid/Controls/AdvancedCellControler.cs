@@ -57,8 +57,19 @@ namespace Sirius.Timetable.Droid.Controls
 			PlaceTextView.Visibility = cell.IsPlace ? ViewStates.Visible : ViewStates.Gone;
 			Bus.Visibility = cell.IsBus ? ViewStates.Visible : ViewStates.Gone;
 
-			StartTextView.TextSize = EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.MainTextSize;
-			BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = cell.DetailTextSize;
+
+			if (Device.Idiom == TargetIdiom.Phone)
+			{
+				StartTextView.TextSize = EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.PhoneMainTextSize;
+				BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = cell.PhoneDetailTextSize;
+				TitleTextView.SetMaxLines(cell.PhoneMaxLines);
+			}
+			else
+			{
+				StartTextView.TextSize = EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.TabletMainTextSize;
+				BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = cell.TabletDetailTextSize;
+				TitleTextView.SetMaxLines(cell.TabletMaxLines);
+			}
 
 			BackLayout.SetBackgroundColor(cell.BackgroundColor.ToAndroid());
 		}
