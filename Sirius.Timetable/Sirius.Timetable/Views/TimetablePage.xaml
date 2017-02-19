@@ -5,19 +5,22 @@
              xmlns:local="clr-namespace:Sirius.Timetable.Controls;assembly=Sirius.Timetable"
              xmlns:services="clr-namespace:Sirius.Timetable.Services;assembly=Sirius.Timetable"
              Title="Расписание">
+    <ContentPage.BindingContext>
+        <services:GetTeamService></services:GetTeamService>
+    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Выбрать" Command="{x:Static services:GetTeamService.GetTeamCommand}"></ToolbarItem>
+        <ToolbarItem Text="Выбрать" Command="{Binding GetTeamCommand}" CommandParameter="True"></ToolbarItem>
     </ContentPage.ToolbarItems>
         <ListView HasUnevenRows="True"
               IsPullToRefreshEnabled="True"
               ItemsSource="{Binding Timetable}"
               IsRefreshing="{Binding IsBusy}"
               VerticalOptions="FillAndExpand"
-              RefreshCommand="{Binding RefreshCommand}"
+              RefreshCommand="{Binding GetTeamCommand}"
               ItemTapped="ListViewOnActivityTapped"
               ItemSelected="ListViewOnActivitySelected"
               Header="{Binding Header}"
-              
+              x:Name="ListView"
               >
             <ListView.HeaderTemplate>
                 <DataTemplate>
@@ -39,7 +42,7 @@
                     SelectedBackgroundColor="Transparent" 
                     BusFrom="{Binding BusFrom}" 
                     BusTo="{Binding BusTo}" 
-                    BackgroundColor="White" 
+                    BackgroundColor="{Binding Color}" 
                     IsPlace="{Binding IsPlace, Mode=OneWay}" 
                     IsBus="{Binding IsBus, Mode=OneWay}" 
                     IsSelected="{Binding IsSelected, Mode=OneWay}"

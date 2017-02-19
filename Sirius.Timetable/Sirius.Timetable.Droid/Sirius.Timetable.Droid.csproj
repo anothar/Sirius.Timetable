@@ -149,7 +149,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CacheLastTeam.cs" />
     <Compile Include="Services\CacheTimetable.cs" />
+    <Compile Include="Services\DateTimeService.cs" />
     <Compile Include="Services\Notificator.cs" />
+    <Compile Include="Services\TimerSerice.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

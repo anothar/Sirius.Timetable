@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using Sirius.Timetable.Controls;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace Sirius.Timetable.Droid.Controls
 {
@@ -58,6 +59,8 @@ namespace Sirius.Timetable.Droid.Controls
 
 			StartTextView.TextSize = EndTextView.TextSize = DashTextView.TextSize = TitleTextView.TextSize = cell.MainTextSize;
 			BusToTextView.TextSize = BusFromTextView.TextSize = PlaceTextView.TextSize = cell.DetailTextSize;
+
+			BackLayout.SetBackgroundColor(cell.BackgroundColor.ToAndroid());
 		}
 	}
 }

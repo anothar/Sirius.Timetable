@@ -1,8 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Rg.Plugins.Popup.Extensions;
 using Sirius.Timetable.Core.Services;
-using Sirius.Timetable.Core;
 using Sirius.Timetable.Droid.Services;
 
 namespace Sirius.Timetable.Droid
@@ -20,6 +20,8 @@ namespace Sirius.Timetable.Droid
             ServiceLocator.RegisterService<ICacheTimetable>(new CacheTimetable());
             ServiceLocator.RegisterService<ICacheLastSelectedTeam>(new CacheLastSelectedTeam());
 			ServiceLocator.RegisterService<INotificationService>(new Notificator(this));
+			ServiceLocator.RegisterService<ITimerService>(new TimerSerice());
+			ServiceLocator.RegisterService<IDateTimeService>(new DateTimeService());
 
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
@@ -33,7 +35,7 @@ namespace Sirius.Timetable.Droid
 
 		public override void OnBackPressed()
 		{
-			base.MoveTaskToBack(true);
+			MoveTaskToBack(true);
 		}
 	}
 }

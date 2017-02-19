@@ -1,8 +1,6 @@
 ﻿using System;
 using Sirius.Timetable.Models;
 using Sirius.Timetable.ViewModels;
-using Rg.Plugins.Popup.Extensions;
-using Sirius.Timetable.Core;
 using Sirius.Timetable.Core.Services;
 using Sirius.Timetable.Services;
 using Xamarin.Forms;
@@ -14,13 +12,17 @@ namespace Sirius.Timetable.Views
 		public TimetablePage()
 		{
 			InitializeComponent();
+			var cache = ServiceLocator.GetService<ICacheLastSelectedTeam>();
+			var team = cache.Get();
+			if (String.IsNullOrEmpty(team)) return;
+			ListView.BindingContext = new TimetableViewModel(DateTime.Today, team, false);
+			ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
 		}
 		
 		private void ListViewOnActivityTapped(object sender, ItemTappedEventArgs e)
 		{
 			var item = (TimetableItem)e.Item;
 			item.IsSelected = !item.IsSelected;
-			ServiceLocator.GetService<INotificationService>().CreateNotification(new Activity { Title = item.Title }, DateTime.Now.AddSeconds(10), "Уведомление");
 		}
 
 		private void ListViewOnActivitySelected(object sender, SelectedItemChangedEventArgs e)
@@ -30,7 +32,8 @@ namespace Sirius.Timetable.Views
 
 		public void UpdateTeam()
 		{
-			BindingContext = new TimetableViewModel(DateTime.Today, GetTeamService.Team);
+			ListView.BindingContext = new TimetableViewModel(DateTime.Today, GetTeamService.Team, true);
+			ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
 		}
 
 	}

@@ -142,12 +142,21 @@ namespace Sirius.Timetable.Views
             return selecter;
         }
 
-        private async void OnChoose(object sender, EventArgs e)
+	    protected override void OnDisappearing()
+	    {
+			if(!_chosen)
+				_completion.TrySetResult(null);
+			_completion.TrySetResult(SelectedGroup);
+	    }
+
+	    private async void OnChoose(object sender, EventArgs e)
         {
             if (!IsSelected)
                 return;
+	        _chosen = true;
             await Application.Current.MainPage.Navigation.PopPopupAsync();
             _completion.TrySetResult(SelectedGroup);
         }
+	    private bool _chosen;
     }
 }

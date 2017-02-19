@@ -37,38 +37,36 @@ namespace Sirius.Timetable.Droid.Renderers
 		private void AdvancedCellOnPropertyChnaged(object sender, PropertyChangedEventArgs e)
 		{
 			var advancedCell = (AdvancedCell) sender;
-			if (e.PropertyName == AdvancedCell.StartProperty.PropertyName)
+			if (e.PropertyName == AdvancedCell.StartProperty.PropertyName) //Start
 				_cell.StartTextView.Text = advancedCell.Start;
-			else if (e.PropertyName == AdvancedCell.EndProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.EndProperty.PropertyName) //End
 				_cell.EndTextView.Text = advancedCell.End;
-			else if (e.PropertyName == AdvancedCell.BusToProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.BusToProperty.PropertyName) //BusTo
 				_cell.BusToTextView.Text = advancedCell.BusTo;
-			else if (e.PropertyName == AdvancedCell.BusFromProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.BusFromProperty.PropertyName) //BusFrom
 				_cell.BusFromTextView.Text = advancedCell.BusFrom;
-			else if (e.PropertyName == AdvancedCell.TitleProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.TitleProperty.PropertyName) //Title
 				_cell.TitleTextView.Text = advancedCell.Title;
-			else if (e.PropertyName == AdvancedCell.PlaceProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.PlaceProperty.PropertyName) //Place
 				_cell.PlaceTextView.Text = advancedCell.Place;
-			else if (e.PropertyName == AdvancedCell.MainTextSizeProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.MainTextSizeProperty.PropertyName) //MainTextSize
 				_cell.StartTextView.TextSize = _cell.EndTextView.TextSize = _cell.DashTextView.TextSize = _cell.TitleTextView.TextSize = advancedCell.MainTextSize;
-			else if (e.PropertyName == AdvancedCell.DetailTextSizeProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.DetailTextSizeProperty.PropertyName) //DetailTextSize
 				_cell.BusToTextView.TextSize =
 					_cell.BusFromTextView.TextSize =
 						_cell.PlaceTextView.TextSize = advancedCell.DetailTextSize;
-			else if (e.PropertyName == AdvancedCell.IsSelectedProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.IsSelectedProperty.PropertyName) // IsSelected
 			{
 				_cell.Details.Visibility = advancedCell.IsSelected ? ViewStates.Visible : ViewStates.Gone;
 				_cell.TitleTextView.SetSingleLine(!advancedCell.IsSelected);
 				_cell.TitleTextView.Ellipsize = advancedCell.IsSelected ? null : TextUtils.TruncateAt.Marquee;
-				if (advancedCell.IsSelected) _cell.BackLayout.SetBackgroundColor(advancedCell.SelectedBackgroundColor.ToAndroid());
-				else _cell.BackLayout.SetBackgroundResource(Resource.Drawable.item_background);
 			}
-			else if (e.PropertyName == AdvancedCell.IsBusProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.IsBusProperty.PropertyName) // IsBus
 				_cell.Bus.Visibility = advancedCell.IsBus ? ViewStates.Visible : ViewStates.Gone;
-			else if (e.PropertyName == AdvancedCell.IsPlaceProperty.PropertyName)
+			else if (e.PropertyName == AdvancedCell.IsPlaceProperty.PropertyName) //IsPlace
 				_cell.PlaceTextView.Visibility = advancedCell.IsPlace ? ViewStates.Visible : ViewStates.Gone;
-			else if (e.PropertyName == AdvancedCell.SelectedBackgroundColorProperty.PropertyName && advancedCell.IsSelected)
-				_cell.BackLayout.SetBackgroundColor(advancedCell.SelectedBackgroundColor.ToAndroid());
+			else if (e.PropertyName == AdvancedCell.BackgroundColorProperty.PropertyName) // BackgroundColor
+				_cell.BackLayout.SetBackgroundColor(advancedCell.BackgroundColor.ToAndroid());
 		}
 	}
 }
