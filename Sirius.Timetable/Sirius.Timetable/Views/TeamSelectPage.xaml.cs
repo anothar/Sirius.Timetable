@@ -11,8 +11,8 @@ namespace Sirius.Timetable.Views
     public partial class TeamSelectPage
     {
         private readonly TaskCompletionSource<string> _completion = new TaskCompletionSource<string>();
-        private bool IsSelected { get; set; }
         private Task<string> CompletionTask => _completion.Task;
+        private bool IsSelected { get; set; }
         private string SelectedItem { get; set; }
         private string SelectedNumber { get; set; }
         private string SelectedGroup { get; set; }

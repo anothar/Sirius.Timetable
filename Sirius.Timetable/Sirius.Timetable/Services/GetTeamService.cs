@@ -17,10 +17,10 @@ namespace Sirius.Timetable.Services
 			{
 			    if (TimetableService.Timetables == null)
 			    {
-			        await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingView());
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingView());
 			        await TimetableService.RefreshTimetables(DateTime.Today);
 			        await Application.Current.MainPage.Navigation.PopAllPopupAsync();
-			    }
+                }
 			}
 			catch (Exception)
             {
