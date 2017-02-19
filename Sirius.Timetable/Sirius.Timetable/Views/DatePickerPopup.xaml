@@ -6,6 +6,8 @@
     <StackLayout>
         <DatePicker
             x:Name="Picker"
-            DateSelected="OnDateSelected"></DatePicker>
+            DateSelected="OnDateSelected">
+            
+        </DatePicker>
     </StackLayout>
 </pages:PopupPage>

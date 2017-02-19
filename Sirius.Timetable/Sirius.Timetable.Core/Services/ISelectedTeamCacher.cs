@@ -1,6 +1,6 @@
 ﻿namespace Sirius.Timetable.Core.Services
 {
-    public interface ICacheLastSelectedTeam
+    public interface ISelectedTeamCacher
     {
         string Get();
         void Cache(string team);
