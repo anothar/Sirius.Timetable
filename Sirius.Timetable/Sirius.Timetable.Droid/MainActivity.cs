@@ -17,8 +17,8 @@ namespace Sirius.Timetable.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
-            ServiceLocator.RegisterService<ICacheTimetable>(new CacheTimetable());
-            ServiceLocator.RegisterService<ICacheLastSelectedTeam>(new CacheLastSelectedTeam());
+            ServiceLocator.RegisterService<ITimetableCacher>(new TimetableCacher());
+            ServiceLocator.RegisterService<ISelectedTeamCacher>(new SelectedTeamCacher());
 			ServiceLocator.RegisterService<INotificationService>(new Notificator(this));
 
 			TabLayoutResource = Resource.Layout.Tabbar;

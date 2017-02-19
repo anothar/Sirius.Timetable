@@ -4,7 +4,7 @@ using Sirius.Timetable.Core.Services;
 
 namespace Sirius.Timetable.Droid.Services
 {
-    public class CacheLastSelectedTeam : ICacheLastSelectedTeam
+    public class SelectedTeamCacher : ISelectedTeamCacher
     {
         private readonly string _cacheLocation = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 

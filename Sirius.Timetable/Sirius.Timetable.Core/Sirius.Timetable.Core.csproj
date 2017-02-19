@@ -36,13 +36,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ICacheLastSelectedTeam.cs" />
+    <Compile Include="Services\ISelectedTeamCacher.cs" />
     <Compile Include="Services\INotificationService.cs" />
     <Compile Include="Services\ServiceLocator.cs" />
     <Compile Include="Timetable\TimetableParser.cs" />
     <Compile Include="Timetable\Utilites\Activity.cs" />
     <Compile Include="Timetable\Timetable.cs" />
-    <Compile Include="Services\ICacheTimetable.cs" />
+    <Compile Include="Services\ITimetableCacher.cs" />
     <Compile Include="WebServises\TimetableDownloader.cs" />
   </ItemGroup>
   <ItemGroup>

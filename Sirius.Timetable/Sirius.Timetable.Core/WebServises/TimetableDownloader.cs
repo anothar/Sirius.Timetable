@@ -10,13 +10,13 @@ namespace Sirius.Timetable.Core
     /// </summary>
     public class TimetableDownloader
     {
-        private readonly ICacheTimetable _cacher;
+        private readonly ITimetableCacher _cacher;
 	    private const string JsonUrl = "http://project2.sochisirius.ru/schedule/getforday/";
 	    private const string Key = "/ddd3a42ebd1ebce7f821d7d2fb04cac8";
 
         public TimetableDownloader()
         {
-            _cacher = ServiceLocator.GetService<ICacheTimetable>();
+            _cacher = ServiceLocator.GetService<ITimetableCacher>();
         }
 
 	    private static string GetFileUrl(DateTime d)
