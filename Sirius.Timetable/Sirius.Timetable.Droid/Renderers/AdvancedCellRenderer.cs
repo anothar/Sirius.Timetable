@@ -53,14 +53,10 @@ namespace Sirius.Timetable.Droid.Renderers
 			{
 				_cell.Details.Visibility = advancedCell.IsSelected ? ViewStates.Visible : ViewStates.Gone;
 				if (Device.Idiom == TargetIdiom.Phone)
-				{
 					_cell.TitleTextView.SetMaxLines(advancedCell.IsSelected ? 100 : advancedCell.PhoneMaxLines);
-				}
 				else
-				{
 					_cell.TitleTextView.SetMaxLines(advancedCell.IsSelected ? 100 : advancedCell.TabletMaxLines);
-				}
-				_cell.TitleTextView.Ellipsize = advancedCell.IsSelected ? null : TextUtils.TruncateAt.Marquee;
+				_cell.TitleTextView.Ellipsize = advancedCell.IsSelected ? null : TextUtils.TruncateAt.End;
 			}
 			else if (e.PropertyName == AdvancedCell.IsBusProperty.PropertyName) // IsBus
 				_cell.Bus.Visibility = advancedCell.IsBus ? ViewStates.Visible : ViewStates.Gone;

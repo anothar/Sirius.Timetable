@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sirius.Timetable.Helpers;
 
 namespace Sirius.Timetable.Models
@@ -16,7 +12,7 @@ namespace Sirius.Timetable.Models
 		}
 		public string Date
 		{
-			get { return String.IsNullOrEmpty(_date) ? "": $"Дата: {_date}"; }
+			get { return String.IsNullOrEmpty(_date) ? "" : _date; }
 			set { SetProperty(ref _date, value); }
 		}
 

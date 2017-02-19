@@ -27,13 +27,7 @@ namespace Sirius.Timetable
 		}
 		public static void SetMainPage()
 		{
-			
-			Current.MainPage = new MasterDetailPage
-			{
-				Master = new ContentPage { Title = "Master" },
-				Detail = new NavigationPage(MasterDetailsServices.DetailPages[Detail.Timetable])
-			};
-			
+			Current.MainPage = MasterDetailsServices.DetailPages[Detail.Timetable];			
 		}
 	}
 }
