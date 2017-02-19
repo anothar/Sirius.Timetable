@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ICacheLastSelectedTeam.cs" />
+    <Compile Include="Services\INotificationService.cs" />
     <Compile Include="Services\ServiceLocator.cs" />
     <Compile Include="Timetable\TimetableParser.cs" />
     <Compile Include="Timetable\Utilites\Activity.cs" />

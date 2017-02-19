@@ -2,6 +2,8 @@
 using Sirius.Timetable.Models;
 using Sirius.Timetable.ViewModels;
 using Rg.Plugins.Popup.Extensions;
+using Sirius.Timetable.Core;
+using Sirius.Timetable.Core.Services;
 using Sirius.Timetable.Services;
 using Xamarin.Forms;
 
@@ -18,6 +20,7 @@ namespace Sirius.Timetable.Views
 		{
 			var item = (TimetableItem)e.Item;
 			item.IsSelected = !item.IsSelected;
+			ServiceLocator.GetService<INotificationService>().CreateNotification(new Activity { Title = item.Title }, DateTime.Now.AddSeconds(10), "Уведомление");
 		}
 
 		private void ListViewOnActivitySelected(object sender, SelectedItemChangedEventArgs e)
