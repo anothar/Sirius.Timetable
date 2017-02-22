@@ -12,11 +12,11 @@ namespace Sirius.Timetable.Views
 		public TimetablePage()
 		{
 			InitializeComponent();
-			var cache = ServiceLocator.GetService<ISelectedTeamCacher>();
-			var team = cache.Get();
-			if (String.IsNullOrEmpty(team)) return;
-			ListView.BindingContext = new TimetableViewModel(DateTime.Today, team, false);
-			ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
+			//var cache = ServiceLocator.GetService<ISelectedTeamCacher>();
+			//var team = cache.Get();
+			//if (String.IsNullOrEmpty(team)) return;
+			//ListView.BindingContext = new TimetableViewModel(DateTime.Today, team, false);
+			//ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
 		}
 
 		private void ListViewOnActivityTapped(object sender, ItemTappedEventArgs e)
@@ -32,15 +32,22 @@ namespace Sirius.Timetable.Views
 
 		public void UpdateTeam()
 		{
-			ListView.BindingContext = new TimetableViewModel(DateTime.Today, GetTeamService.Team, true);
+			ListView.BindingContext = new TimetableViewModel((ListView.BindingContext as TimetableViewModel)?.Date ?? DateTime.Today, ((GetTeamService)BindingContext).Team ?? (ListView.BindingContext as TimetableViewModel)?.ShortTeam, true);
 			ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
 		}
 
-		private async void DateLableOnTapped(object sender, EventArgs e)
+		public static TimetableViewModel P;
+		public static TimetableViewModel N;
+			
+		public void UpdateDate(DateTime date)
 		{
-			var date = await new DatePickerPopup(DateTime.Today).SelectDateAsync();
-			ListView.BindingContext = new TimetableViewModel(date, GetTeamService.Team, true);
+			ListView.BindingContext = new TimetableViewModel(date, ((GetTeamService)BindingContext).Team ?? (ListView.BindingContext as TimetableViewModel)?.ShortTeam, false);
 			ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
+			//P = (TimetableViewModel)ListView.BindingContext;
+			//N = new TimetableViewModel(date, ((GetTeamService)BindingContext).Team ?? (ListView.BindingContext as TimetableViewModel)?.ShortTeam, false, null);
+			//N.Timetable = P.Timetable;
+			//ListView.BindingContext = N;
+			//ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
 		}
 	}
 }

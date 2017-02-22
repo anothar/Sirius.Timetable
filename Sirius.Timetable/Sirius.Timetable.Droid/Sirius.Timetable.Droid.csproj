@@ -43,6 +43,10 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Extreme.Net, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extreme.Net.2.0.15\lib\Extreme.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.180\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
       <Private>True</Private>
@@ -147,11 +151,14 @@
     <Compile Include="Renderers\AdvancedCellRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DatePickerDialogService.cs" />
+    <Compile Include="Services\DatePickerFragment.cs" />
     <Compile Include="Services\DateTimeService.cs" />
     <Compile Include="Services\SelectedTeamCacher.cs" />
     <Compile Include="Services\TimetableCacher.cs" />
     <Compile Include="Services\Notificator.cs" />
     <Compile Include="Services\TimerSerice.cs" />
+    <Compile Include="Services\TimetableDownloader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

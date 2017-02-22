@@ -23,7 +23,8 @@ namespace Sirius.Timetable.Droid
 			ServiceLocator.RegisterService<INotificationService>(new Notificator(this));
 			ServiceLocator.RegisterService<ITimerService>(new TimerSerice());
 			ServiceLocator.RegisterService<IDateTimeService>(new DateTimeService());
-
+			ServiceLocator.RegisterService<IDatePickerDialogService>(new DatePickerDialogService(FragmentManager));
+			ServiceLocator.RegisterService<ITimetableDownloader>(new TimetableDownloader());
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 

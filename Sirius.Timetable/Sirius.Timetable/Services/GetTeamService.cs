@@ -13,7 +13,7 @@ namespace Sirius.Timetable.Services
 
 		public GetTeamService()
 		{
-			GetTeamCommand = new Command(async o => await GetTeamExecute(), CanExecute);
+			GetTeamCommand = new Command(async o => await GetTeamExecute(o as bool?), CanExecute);
 		}
 
 		public bool IsBusy
@@ -23,34 +23,62 @@ namespace Sirius.Timetable.Services
 		}
 
 		public Command GetTeamCommand { get; set; }
-		public static string Team { get; set; }
+		public string Team { get; set; }
 
 		private bool CanExecute(object o)
 		{
 			return !_isBusy;
 		}
 
-		private async Task GetTeamExecute()
+		private async Task GetTeamExecute(bool? b)
 		{
 			_isBusy = true;
 			GetTeamCommand.ChangeCanExecute();
-			try
+			if (b == null)
 			{
-				if (TimetableService.Timetables == null)
-					await TimetableService.RefreshTimetables(DateTime.Today);
+				try
+				{
+					if (TimetableService.Timetables == null)
+					{
+						await TimetableService.RefreshTimetables(DateTime.Today);
+					}
+				}
+				catch (Exception)
+				{
+					await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+					await Application.Current.MainPage.DisplayAlert(
+						"Произошла ошибка при загрузке данных",
+						"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку",
+						"Ок");
+					IsBusy = false;
+					GetTeamCommand.ChangeCanExecute();
+					return;
+				}
 			}
-			catch (Exception)
+			else
 			{
-				await Application.Current.MainPage.Navigation.PopAllPopupAsync();
-				await Application.Current.MainPage.DisplayAlert(
-					"Произошла ошибка при загрузке данных",
-					"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку",
-					"Ок");
-				IsBusy = false;
-				GetTeamCommand.ChangeCanExecute();
-				return;
-			}
 
+				try
+				{
+					if (TimetableService.Timetables == null)
+					{
+						await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingView());
+						await TimetableService.RefreshTimetables(DateTime.Today);
+						await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+					}
+				}
+				catch (Exception)
+				{
+					await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+					await Application.Current.MainPage.DisplayAlert(
+						"Произошла ошибка при загрузке данных",
+						"Убедитесь, что вы подключены к сети Сириуса (Sirius_free) и повторите попытку",
+						"Ок");
+					IsBusy = false;
+					GetTeamCommand.ChangeCanExecute();
+					return;
+				}
+			}
 			var selectPage = new TeamSelectPage();
 			var selectedGroup = await selectPage.SelectTeamAsync();
 

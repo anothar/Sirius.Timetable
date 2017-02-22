@@ -31,10 +31,13 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Text="{Binding Team}" HorizontalTextAlignment="End"
                            LineBreakMode="TailTruncation" FontSize="16" TextColor="White" />
-                    <Label Grid.Row="1" Text="{Binding Date}" HorizontalTextAlignment="End" FontSize="15"
-                           TextColor="White" LineBreakMode="NoWrap">
+                    <Label Grid.Row="1" Text="{Binding Date, StringFormat='{0:D}'}" HorizontalTextAlignment="End" FontSize="15"
+                           TextColor="White" LineBreakMode="NoWrap" x:Name="Label">
+                        <Label.BindingContext>
+                            <services:DateTimeService></services:DateTimeService>
+                        </Label.BindingContext>
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="DateLableOnTapped"/>
+                            <TapGestureRecognizer Command="{Binding GetDateCommand}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
