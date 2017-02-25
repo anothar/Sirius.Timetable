@@ -1,39 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sirius.Timetable.Core
 {
-    /// <summary>
-    /// Событие дня для одной группы
-    /// </summary>
+	/// <summary>
+	///     Событие дня для одной группы
+	/// </summary>
 	public class Activity
 	{
-        /// <summary>
-        /// Время начала события
-        /// </summary>
+		/// <summary>
+		///     Время начала события
+		/// </summary>
 		public DateTime? Start { get; set; }
-        /// <summary>
-        /// Время конца события, null - если нет
-        /// </summary>
+
+		/// <summary>
+		///     Время конца события, null - если нет
+		/// </summary>
 		public DateTime? End { get; set; }
-        /// <summary>
-        /// Название и описание события
-        /// </summary>
+
+		/// <summary>
+		///     Название и описание события
+		/// </summary>
 		public string Title { get; set; }
-        /// <summary>
-        /// Место события
-        /// </summary>
+
+		/// <summary>
+		///     Место события
+		/// </summary>
 		public string Place { get; set; }
-        /// <summary>
-        /// Время отъезда автобуса на мероприятие, null - если нет автобуса
-        /// </summary>
+
+		/// <summary>
+		///     Время отъезда автобуса на мероприятие, null - если нет автобуса
+		/// </summary>
 		public DateTime? BusTo { get; set; }
-        /// <summary>
-        /// Время отъезда автобуса с мероприятия, null - если нет автобуса
-        /// </summary>
+
+		/// <summary>
+		///     Время отъезда автобуса с мероприятия, null - если нет автобуса
+		/// </summary>
 		public DateTime? BusFrom { get; set; }
 	}
 }

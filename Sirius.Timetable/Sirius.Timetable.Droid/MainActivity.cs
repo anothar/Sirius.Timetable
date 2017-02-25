@@ -1,22 +1,43 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Sirius.Timetable.Core.Services;
+using Sirius.Timetable.Droid.Services;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace Sirius.Timetable.Droid
 {
-	[Activity(Label = "Sirius.Timetable.Droid", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+	[Activity(
+		 Label = "Расписание Сириус",
+		 Theme = "@style/MyTheme",
+		 MainLauncher = true,
+		 ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)
+	]
+	public class MainActivity : FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+			ServiceLocator.RegisterService<ITimetableCacher>(new TimetableCacher());
+			ServiceLocator.RegisterService<ISelectedTeamCacher>(new SelectedTeamCacher());
+			ServiceLocator.RegisterService<INotificationService>(new Notificator(this));
+			ServiceLocator.RegisterService<ITimerService>(new TimerSerice());
+			ServiceLocator.RegisterService<IDateTimeService>(new DateTimeService());
+			ServiceLocator.RegisterService<IDatePickerDialogService>(new DatePickerDialogService(FragmentManager));
+			ServiceLocator.RegisterService<ITimetableDownloader>(new TimetableDownloader());
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
 			base.OnCreate(bundle);
 
-			global::Xamarin.Forms.Forms.Init(this, bundle);
+			Forms.Init(this, bundle);
 
 			LoadApplication(new App());
+		}
+
+		public override void OnBackPressed()
+		{
+			MoveTaskToBack(true);
 		}
 	}
 }
