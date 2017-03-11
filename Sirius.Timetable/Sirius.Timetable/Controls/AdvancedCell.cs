@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Sirius.Timetable.Controls
+namespace SiriusTimetable.Common.Controls
 {
 	public class AdvancedCell : ViewCell
 	{

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Extensions;
-using Sirius.Timetable.Services;
+using SiriusTimetable.Common.Services;
 using Xamarin.Forms;
 
-namespace Sirius.Timetable.Views
+namespace SiriusTimetable.Common.Views
 {
 	public partial class TeamSelectPage
 	{

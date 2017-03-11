@@ -1,7 +1,7 @@
 ﻿using System;
-using Sirius.Timetable.Helpers;
+using SiriusTimetable.Common.Helpers;
 
-namespace Sirius.Timetable.Models
+namespace SiriusTimetable.Common.Models
 {
 	public class TimetableHeader : ObservableObject
 	{

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using Sirius.Timetable.Core.Services;
+using SiriusTimetable.Core.Services.Abstractions;
 
-namespace Sirius.Timetable.Droid.Services
+namespace SiriusTimetable.Droid.Services
 {
 	public class SelectedTeamCacher : ISelectedTeamCacher
 	{

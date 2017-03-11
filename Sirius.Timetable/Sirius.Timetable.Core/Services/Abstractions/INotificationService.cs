@@ -1,6 +1,7 @@
 ﻿using System;
+using SiriusTimetable.Core.Timetable;
 
-namespace Sirius.Timetable.Core.Services
+namespace SiriusTimetable.Core.Services.Abstractions
 {
 	public interface INotificationService
 	{

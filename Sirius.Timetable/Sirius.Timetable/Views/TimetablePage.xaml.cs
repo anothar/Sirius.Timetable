@@ -1,11 +1,11 @@
 ﻿using System;
-using Sirius.Timetable.Core.Services;
-using Sirius.Timetable.Models;
-using Sirius.Timetable.Services;
-using Sirius.Timetable.ViewModels;
+using SiriusTimetable.Common.Models;
+using SiriusTimetable.Common.Services;
+using SiriusTimetable.Common.ViewModels;
 using Xamarin.Forms;
+using ListView = Xamarin.Forms.ListView;
 
-namespace Sirius.Timetable.Views
+namespace SiriusTimetable.Common.Views
 {
 	public partial class TimetablePage
 	{
@@ -32,8 +32,11 @@ namespace Sirius.Timetable.Views
 
 		public void UpdateTeam()
 		{
-			ListView.BindingContext = new TimetableViewModel((ListView.BindingContext as TimetableViewModel)?.Date ?? DateTime.Today, ((GetTeamService)BindingContext).Team ?? (ListView.BindingContext as TimetableViewModel)?.ShortTeam, true);
-			ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
+			ListView.BindingContext =
+				new TimetableViewModel(
+					(ListView.BindingContext as TimetableViewModel)?.Date ?? DateTime.ParseExact("06.02.2017", "dd.MM.yyyy", null),
+					((GetTeamService) BindingContext).Team ?? (ListView.BindingContext as TimetableViewModel)?.ShortTeam, true);
+			ListView.SetBinding(Xamarin.Forms.ListView.RefreshCommandProperty, "RefreshCommand");
 		}
 
 		public static TimetableViewModel P;
@@ -42,12 +45,13 @@ namespace Sirius.Timetable.Views
 		public void UpdateDate(DateTime date)
 		{
 			ListView.BindingContext = new TimetableViewModel(date, ((GetTeamService)BindingContext).Team ?? (ListView.BindingContext as TimetableViewModel)?.ShortTeam, false);
-			ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
+			ListView.SetBinding(Xamarin.Forms.ListView.RefreshCommandProperty, "RefreshCommand");
 			//P = (TimetableViewModel)ListView.BindingContext;
 			//N = new TimetableViewModel(date, ((GetTeamService)BindingContext).Team ?? (ListView.BindingContext as TimetableViewModel)?.ShortTeam, false, null);
 			//N.Timetable = P.Timetable;
 			//ListView.BindingContext = N;
 			//ListView.SetBinding(ListView.RefreshCommandProperty, "RefreshCommand");
 		}
+
 	}
 }

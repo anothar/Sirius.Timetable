@@ -2,9 +2,9 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Sirius.Timetable.Views.TimetablePage"
-             xmlns:local="clr-namespace:Sirius.Timetable.Controls;assembly=Sirius.Timetable"
-             xmlns:services="clr-namespace:Sirius.Timetable.Services;assembly=Sirius.Timetable"
+             x:Class="SiriusTimetable.Common.Views.TimetablePage"
+             xmlns:local="clr-namespace:SiriusTimetable.Common.Controls;assembly=SiriusTimetable.Common"
+             xmlns:services="clr-namespace:SiriusTimetable.Common.Services;assembly=SiriusTimetable.Common"
              Title="Расписание">
     <ContentPage.BindingContext>
         <services:GetTeamService />
@@ -62,7 +62,8 @@
                     PhoneDetailTextSize="12"
                     TabletMainTextSize="16"
                     TabletMaxLines="1"
-                    TabletDetailTextSize="14" />
+                    TabletDetailTextSize="14" >
+                </local:AdvancedCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

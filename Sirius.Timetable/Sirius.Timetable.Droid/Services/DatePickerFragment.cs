@@ -3,7 +3,7 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 
-namespace Sirius.Timetable.Droid.Services
+namespace SiriusTimetable.Droid.Services
 {
 	public class DatePickerFragment : DialogFragment,
 		DatePickerDialog.IOnDateSetListener

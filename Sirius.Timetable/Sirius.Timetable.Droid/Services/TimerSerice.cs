@@ -1,8 +1,8 @@
 using System;
 using System.Timers;
-using Sirius.Timetable.Core.Services;
+using SiriusTimetable.Core.Services.Abstractions;
 
-namespace Sirius.Timetable.Droid.Services
+namespace SiriusTimetable.Droid.Services
 {
 	public class TimerSerice : ITimerService
 	{

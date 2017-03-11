@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Sirius.Timetable.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("SiriusTimetable.Droid.Resource", IsApplication=true)]
 
-namespace Sirius.Timetable.Droid
+namespace SiriusTimetable.Droid
 {
 	
 	
@@ -26,7 +26,7 @@ namespace Sirius.Timetable.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Sirius.Timetable.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::SiriusTimetable.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

@@ -1,4 +1,4 @@
-﻿namespace Sirius.Timetable.Core.Services
+﻿namespace SiriusTimetable.Core.Services.Abstractions
 {
 	public interface ISelectedTeamCacher
 	{

@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sirius.Timetable.Core.Services;
-using Sirius.Timetable.Helpers;
-using Sirius.Timetable.ViewModels;
-using Sirius.Timetable.Views;
+using SiriusTimetable.Common.Helpers;
+using SiriusTimetable.Core.Services;
+using SiriusTimetable.Core.Services.Abstractions;
 using Xamarin.Forms;
+using TimetablePage = SiriusTimetable.Common.Views.TimetablePage;
 
-namespace Sirius.Timetable.Services
+namespace SiriusTimetable.Common.Services
 {
 	public class DateTimeService : ObservableObject
 	{
@@ -30,7 +26,7 @@ namespace Sirius.Timetable.Services
 
 		private void GetDateExecute()
 		{
-			ServiceLocator.GetService<IDatePickerDialogService>().ChosenDate(ChoosenDate);
+			ServiceLocator.GetService<IDatePickerDialogService>().ChoosenDate(ChoosenDate);
 		}
 
 		private void ChoosenDate(DateTime date)

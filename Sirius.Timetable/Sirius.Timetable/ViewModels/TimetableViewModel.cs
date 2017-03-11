@@ -3,14 +3,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Extensions;
-using Sirius.Timetable.Core.Services;
-using Sirius.Timetable.Helpers;
-using Sirius.Timetable.Models;
-using Sirius.Timetable.Services;
-using Sirius.Timetable.Views;
+using SiriusTimetable.Common.Helpers;
+using SiriusTimetable.Common.Models;
+using SiriusTimetable.Common.Services;
+using SiriusTimetable.Core.Services;
+using SiriusTimetable.Core.Services.Abstractions;
 using Xamarin.Forms;
+using LoadingView = SiriusTimetable.Common.Views.LoadingView;
 
-namespace Sirius.Timetable.ViewModels
+namespace SiriusTimetable.Common.ViewModels
 {
 	public class TimetableViewModel : ObservableObject
 	{

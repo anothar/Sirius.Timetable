@@ -1,8 +1,8 @@
 using System;
 using Android.App;
-using Sirius.Timetable.Core.Services;
+using SiriusTimetable.Core.Services.Abstractions;
 
-namespace Sirius.Timetable.Droid.Services
+namespace SiriusTimetable.Droid.Services
 {
 	public class DatePickerDialogService : IDatePickerDialogService
 	{
@@ -13,7 +13,7 @@ namespace Sirius.Timetable.Droid.Services
 		{
 			_manager = manager;
 		}
-		public void ChosenDate(Action<DateTime> action)
+		public void ChoosenDate(Action<DateTime> action)
 		{
 			var frag = DatePickerFragment.NewInstance(delegate(DateTime time)
 			{

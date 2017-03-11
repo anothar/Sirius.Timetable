@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Extensions;
-using Sirius.Timetable.Helpers;
-using Sirius.Timetable.Views;
+using SiriusTimetable.Common.Helpers;
+using SiriusTimetable.Common.Views;
 using Xamarin.Forms;
+using LoadingView = SiriusTimetable.Common.Views.LoadingView;
+using TimetablePage = SiriusTimetable.Common.Views.TimetablePage;
 
-namespace Sirius.Timetable.Services
+namespace SiriusTimetable.Common.Services
 {
 	public class GetTeamService : ObservableObject
 	{
@@ -40,7 +42,7 @@ namespace Sirius.Timetable.Services
 				{
 					if (TimetableService.Timetables == null)
 					{
-						await TimetableService.RefreshTimetables(DateTime.Today);
+						await TimetableService.RefreshTimetables(DateTime.ParseExact("06.02.2017", "dd.MM.yyyy", null));
 					}
 				}
 				catch (Exception)

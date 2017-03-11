@@ -1,4 +1,4 @@
-﻿namespace Sirius.Timetable.Views
+﻿namespace SiriusTimetable.Common.Views
 {
 	public partial class LoadingView
 	{

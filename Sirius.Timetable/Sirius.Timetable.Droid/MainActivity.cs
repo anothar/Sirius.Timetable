@@ -1,12 +1,14 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Sirius.Timetable.Core.Services;
-using Sirius.Timetable.Droid.Services;
+using SiriusTimetable.Core.Services;
+using SiriusTimetable.Core.Services.Abstractions;
+using SiriusTimetable.Droid.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using App = SiriusTimetable.Common.App;
 
-namespace Sirius.Timetable.Droid
+namespace SiriusTimetable.Droid
 {
 	[Activity(
 		 Label = "Расписание Сириус",
@@ -17,10 +19,10 @@ namespace Sirius.Timetable.Droid
 	public class MainActivity : FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle bundle)
-		{
+		{	
+			
 			ServiceLocator.RegisterService<ITimetableCacher>(new TimetableCacher());
 			ServiceLocator.RegisterService<ISelectedTeamCacher>(new SelectedTeamCacher());
-			ServiceLocator.RegisterService<INotificationService>(new Notificator(this));
 			ServiceLocator.RegisterService<ITimerService>(new TimerSerice());
 			ServiceLocator.RegisterService<IDateTimeService>(new DateTimeService());
 			ServiceLocator.RegisterService<IDatePickerDialogService>(new DatePickerDialogService(FragmentManager));

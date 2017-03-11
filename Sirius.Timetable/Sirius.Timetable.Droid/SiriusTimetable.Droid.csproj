@@ -7,8 +7,8 @@
     <ProjectGuid>{9768FB97-730C-48A9-AEC6-CD07B3C8A65B}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Sirius.Timetable.Droid</RootNamespace>
-    <AssemblyName>Sirius.Timetable.Droid</AssemblyName>
+    <RootNamespace>SiriusTimetable.Droid</RootNamespace>
+    <AssemblyName>SiriusTimetable.Droid</AssemblyName>
     <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -23,7 +23,7 @@
     </AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
@@ -31,6 +31,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <Debugger>.Net (Xamarin)</Debugger>
+    <AotAssemblies>False</AotAssemblies>
+    <EnableLLVM>False</EnableLLVM>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <EnableProguard>False</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,12 +52,21 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Extreme.Net, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extreme.Net.2.0.15\lib\Extreme.Net.dll</HintPath>
+    <Reference Include="ExifLib, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExifLib.PCL.1.0.2-pre01\lib\netstandard1.0\ExifLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.180\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="MR.Gestures, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MR.Gestures.1.4.1\lib\MonoAndroid10\MR.Gestures.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MR.Gestures.Android, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MR.Gestures.1.4.1\lib\MonoAndroid10\MR.Gestures.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Rg.Plugins.Popup, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -156,7 +174,6 @@
     <Compile Include="Services\DateTimeService.cs" />
     <Compile Include="Services\SelectedTeamCacher.cs" />
     <Compile Include="Services\TimetableCacher.cs" />
-    <Compile Include="Services\Notificator.cs" />
     <Compile Include="Services\TimerSerice.cs" />
     <Compile Include="Services\TimetableDownloader.cs" />
   </ItemGroup>
@@ -185,13 +202,13 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\profile_generic.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sirius.Timetable.Core\Sirius.Timetable.Core.csproj">
+    <ProjectReference Include="..\Sirius.Timetable.Core\SiriusTimetable.Core.csproj">
       <Project>{be52eb50-b0da-4689-8964-af0d7c5dee46}</Project>
-      <Name>Sirius.Timetable.Core</Name>
+      <Name>SiriusTimetable.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sirius.Timetable\Sirius.Timetable.csproj">
+    <ProjectReference Include="..\Sirius.Timetable\SiriusTimetable.Common.csproj">
       <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
-      <Name>Sirius.Timetable</Name>
+      <Name>SiriusTimetable.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

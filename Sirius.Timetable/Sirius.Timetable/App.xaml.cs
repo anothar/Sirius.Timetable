@@ -1,14 +1,11 @@
-﻿using System;
-using Sirius.Timetable.Core.Services;
-using Sirius.Timetable.Services;
-using Sirius.Timetable.ViewModels;
-using Sirius.Timetable.Views;
+﻿using SiriusTimetable.Common.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using TimetablePage = SiriusTimetable.Common.Views.TimetablePage;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
-namespace Sirius.Timetable
+namespace SiriusTimetable.Common
 {
 	public partial class App
 	{

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sirius.Timetable.Core;
+using SiriusTimetable.Core.Services;
 
-namespace Sirius.Timetable.Services
+namespace SiriusTimetable.Common.Services
 {
 	public static class TimetableService
 	{
 		/// <summary>
 		///     Словарь с расписанием по дате. key - дата в формате ddmmyyyy, value - расписание
 		/// </summary>
-		public static Dictionary<string, Core.Timetable> Timetables { get; set; }
+		public static Dictionary<string, Core.Timetable.Timetable> Timetables { get; set; }
 
 		public static Dictionary<string, string> KeywordDictionary { get; set; }
 		public static Dictionary<string, List<string>> TeamsLiterPossibleNumbers { get; set; }

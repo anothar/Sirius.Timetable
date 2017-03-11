@@ -2,11 +2,11 @@ using Android.App;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using Sirius.Timetable.Controls;
+using SiriusTimetable.Common.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-namespace Sirius.Timetable.Droid.Controls
+namespace SiriusTimetable.Droid.Controls
 {
 	public sealed class AdvancedCellControler : LinearLayout, INativeElementView
 	{

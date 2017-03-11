@@ -1,9 +1,9 @@
 ﻿using System;
-using Sirius.Timetable.Core;
-using Sirius.Timetable.Helpers;
+using SiriusTimetable.Common.Helpers;
+using SiriusTimetable.Core.Timetable;
 using Xamarin.Forms;
 
-namespace Sirius.Timetable.Models
+namespace SiriusTimetable.Common.Models
 {
 	public class TimetableItem : ObservableObject
 	{

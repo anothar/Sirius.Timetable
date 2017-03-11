@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sirius.Timetable.Core
+namespace SiriusTimetable.Core.Timetable
 {
 	/// <summary>
 	///     Событие дня для одной группы
