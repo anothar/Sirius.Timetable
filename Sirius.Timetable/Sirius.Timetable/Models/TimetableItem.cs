@@ -20,8 +20,8 @@ namespace SiriusTimetable.Common.Models
 		public TimetableItem(Activity activity)
 		{
 			Parent = activity;
-			if (activity.Start != null) Start = activity.Start.Value.ToString("HH:mm");
-			if (activity.End != null) End = activity.End.Value.ToString("HH:mm");
+			Start = activity.Start.ToString("HH:mm");
+			End = activity.End.ToString("HH:mm");
 			if (activity.BusTo != null) BusTo = activity.BusTo.Value.ToString("HH:mm");
 			if (activity.BusFrom != null) BusFrom = activity.BusFrom.Value.ToString("HH:mm");
 			Title = activity.Title;

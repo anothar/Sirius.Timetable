@@ -23,7 +23,7 @@ namespace SiriusTimetable.Common.Views
 			Sport.GestureRecognizers.Add(tapImg);
 			Literature.GestureRecognizers.Add(tapImg);
 			Art.GestureRecognizers.Add(tapImg);
-
+			
 			Art.HeightRequest = Science.HeightRequest = Sport.HeightRequest = Literature.HeightRequest = ImageHeight;
 		}
 

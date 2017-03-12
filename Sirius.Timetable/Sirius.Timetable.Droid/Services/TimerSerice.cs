@@ -15,18 +15,17 @@ namespace SiriusTimetable.Droid.Services
 			_timer = new Timer {Interval = 60000};
 		}
 
-		public void AddHandler(Action action)
+		public void SetHandler(Action action)
 		{
+			_timer.Stop();
+			_timer.Elapsed -= _handler;
 			_action = action;
+
 			_handler = (sender, args) =>
 			{
-				if (_action == null)
-				{
-					_timer.Elapsed -= _handler;
-					_timer.Stop();
-				}
-				else _action.Invoke();
+				_action.Invoke();
 			};
+
 			_timer.Elapsed += _handler;
 			_timer.Start();
 		}

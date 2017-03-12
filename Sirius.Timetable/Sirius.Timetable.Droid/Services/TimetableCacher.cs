@@ -6,19 +6,51 @@ namespace SiriusTimetable.Droid.Services
 {
 	public class TimetableCacher : ITimetableCacher
 	{
-		private readonly string _cacheLocation = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cachePath">Путь к кеш папке</param>
+		public TimetableCacher(string cachePath)
+		{
+			_cacheLocation = cachePath;
+		}
+		/// <summary>
+		/// Время, по истечении которого кеш считается устарешим
+		/// </summary>
+		public TimeSpan StalePeriod { get; set; } = TimeSpan.FromHours(4);
+		/// <summary>
+		/// Возвращает имя json файла
+		/// </summary>
+		/// <param name="date">Дата</param>
+		/// <returns></returns>
+		private string GetFileName(DateTime date)
+		{
+			return $"{_cacheLocation}/{date:yyyy-MM-dd}.json";
+		}
+		private readonly string _cacheLocation;
+
+		/// <summary>
+		/// Возвращает true, если кеш устарел, null, если файл не сущетсвует
+		/// </summary>
+		/// <param name="date"></param>
+		/// <returns></returns>
+		public bool? IsStale(DateTime date)
+		{
+			var fileName = GetFileName(date);
+			if (!File.Exists(fileName)) return null;
+			return File.GetCreationTimeUtc(fileName) - DateTime.UtcNow >= StalePeriod;
+		}
+
 
 		public string Get(DateTime dateToGet)
 		{
-			var fileName = $"{_cacheLocation}/{dateToGet:yyyy-MM-dd}.json";
-			if (File.Exists(fileName) && ((DateTime.Now - File.GetLastWriteTime(fileName)).Hours < 6))
-				return File.ReadAllText(fileName);
-			return null;
+			var fileName = GetFileName(dateToGet);
+			return File.Exists(fileName) ? File.ReadAllText(fileName) : null;
 		}
 
 		public void Cache(string timetableJsonText, DateTime dateToCache)
 		{
-			var fileName = $"{_cacheLocation}/{dateToCache:yyyy-MM-dd}.json";
+			var fileName = GetFileName(dateToCache);
 			File.WriteAllText(fileName, timetableJsonText);
 		}
 	}

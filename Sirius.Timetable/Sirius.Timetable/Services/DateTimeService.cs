@@ -3,7 +3,6 @@ using SiriusTimetable.Common.Helpers;
 using SiriusTimetable.Core.Services;
 using SiriusTimetable.Core.Services.Abstractions;
 using Xamarin.Forms;
-using TimetablePage = SiriusTimetable.Common.Views.TimetablePage;
 
 namespace SiriusTimetable.Common.Services
 {
@@ -31,8 +30,8 @@ namespace SiriusTimetable.Common.Services
 
 		private void ChoosenDate(DateTime date)
 		{
-			Date = date;
-			((TimetablePage)MasterDetailsServices.DetailPages[App.Detail.Timetable]).UpdateDate(Date);
+			//Date = date;
+			//((TimetablePage)MasterDetailsServices.DetailPages[App.Detail.Timetable]).UpdateDate(Date);
 		}
 	}
 }

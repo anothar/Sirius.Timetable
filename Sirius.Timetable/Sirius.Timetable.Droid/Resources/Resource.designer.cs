@@ -3015,6 +3015,15 @@ namespace SiriusTimetable.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f080027
+			public const int AlertNoInternetMessage = 2131230759;
+			
+			// aapt resource value: 0x7f080028
+			public const int AlertStaleCacheMessage = 2131230760;
+			
+			// aapt resource value: 0x7f080026
+			public const int AlertTitle = 2131230758;
+			
 			// aapt resource value: 0x7f08000f
 			public const int abc_action_bar_home_description = 2131230735;
 			
@@ -3600,6 +3609,9 @@ namespace SiriusTimetable.Droid
 			
 			// aapt resource value: 0x7f0a001a
 			public const int CardView_Light = 2131361818;
+			
+			// aapt resource value: 0x7f0a0175
+			public const int MyAlertDialogStyle = 2131362165;
 			
 			// aapt resource value: 0x7f0a0172
 			public const int MyTheme = 2131362162;

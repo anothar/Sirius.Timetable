@@ -1,12 +1,16 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using SiriusTimetable.Core.Services.Abstractions;
 
 namespace SiriusTimetable.Droid.Services
 {
 	public class SelectedTeamCacher : ISelectedTeamCacher
 	{
-		private readonly string _cacheLocation = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+		public SelectedTeamCacher(string cachePath)
+		{
+			_cacheLocation = cachePath;
+		}
+
+		private readonly string _cacheLocation;
 
 		public string Get()
 		{
